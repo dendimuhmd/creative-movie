@@ -1,14 +1,16 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/data/datasources/movie_local_data_source.dart';
-import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
-import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
+
 import 'package:ditonton/domain/repositories/movie_repository.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
+
+import '../../domain/entities/movie/movie.dart';
+import '../../domain/entities/movie/movie_detail.dart';
+import '../datasources/movie/movie_local_data_source.dart';
+import '../datasources/movie/movie_remote_data_source.dart';
+import '../models/movie/movie_table.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -23,7 +25,7 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies() async {
     try {
       final result = await remoteDataSource.getNowPlayingMovies();
-      return Right(result.map((model) => model.toEntity()).toList());
+      return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {
       return Left(ServerFailure(''));
     } on SocketException {
