@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/movie/genre_model.dart';
+import 'package:ditonton/data/models/tv_series/series_genre_model.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
@@ -32,7 +33,7 @@ class TvSeriesDetailResponse extends Equatable {
   final bool adult;
   final String? backdropPath;
   final int budget;
-  final List<GenreModel> genres;
+  final List<TvSeriesGenreModel> genres;
   final String homepage;
   final int id;
   final String? imdbId;
@@ -56,8 +57,8 @@ class TvSeriesDetailResponse extends Equatable {
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         budget: json["budget"],
-        genres: List<GenreModel>.from(
-            json["genres"].map((x) => GenreModel.fromJson(x))),
+        genres: List<TvSeriesGenreModel>.from(
+            json["genres"].map((x) => TvSeriesGenreModel.fromJson(x))),
         homepage: json["homepage"],
         id: json["id"],
         imdbId: json["imdb_id"],

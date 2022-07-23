@@ -1,14 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/entities/movir/movir_detail.dart';
-import 'package:ditonton/domain/repositories/movir_repository.dart';
 
-class SaveWatchlist {
-  final MovieRepository repository;
+import '../../entities/tv_series/series_detail.dart';
+import '../../repositories/series_repository.dart';
 
-  SaveWatchlist(this.repository);
+class SaveWatchlistTvSeries {
+  final TvSeriesRepository repository;
 
-  Future<Either<Failure, String>> execute(MovieDetail movir) {
-    return repository.saveWatchlist(movir);
+  SaveWatchlistTvSeries(this.repository);
+
+  Future<Either<Failure, String>> execute(TvSeriesDetail series) {
+    return repository.saveWatchlist(series);
   }
 }

@@ -1,9 +1,9 @@
-import 'package:ditonton/domain/repositories/movir_repository.dart';
+import '../../repositories/series_repository.dart';
 
-class GetWatchListStatus {
-  final MovieRepository repository;
+class GetWatchListStatusTvSeries {
+  final TvSeriesRepository repository;
 
-  GetWatchListStatus(this.repository);
+  GetWatchListStatusTvSeries(this.repository);
 
   Future<bool> execute(int id) async {
     return repository.isAddedToWatchlist(id);

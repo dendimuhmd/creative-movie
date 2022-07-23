@@ -1,14 +1,16 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/movir/movir.dart';
-import 'package:ditonton/domain/repositories/movir_repository.dart';
+
 import 'package:ditonton/common/failure.dart';
 
-class GetNowPlayingMovies {
-  final MovieRepository repository;
+import '../../entities/tv_series/series.dart';
+import '../../repositories/series_repository.dart';
 
-  GetNowPlayingMovies(this.repository);
+class GetNowPlayingTvSeriess {
+  final TvSeriesRepository repository;
 
-  Future<Either<Failure, List<Movie>>> execute() {
-    return repository.getNowPlayingMovies();
+  GetNowPlayingTvSeriess(this.repository);
+
+  Future<Either<Failure, List<TvSeries>>> execute() {
+    return repository.getNowPlayingTvSeriess();
   }
 }

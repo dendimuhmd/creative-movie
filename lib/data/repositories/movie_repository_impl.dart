@@ -2,12 +2,11 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 
-import 'package:ditonton/domain/repositories/movie_repository.dart';
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/common/failure.dart';
-
+import '../../common/exception.dart';
+import '../../common/failure.dart';
 import '../../domain/entities/movie/movie.dart';
 import '../../domain/entities/movie/movie_detail.dart';
+import '../../domain/repositories/movie_repository.dart';
 import '../datasources/movie/movie_local_data_source.dart';
 import '../datasources/movie/movie_remote_data_source.dart';
 import '../models/movie/movie_table.dart';
