@@ -1,4 +1,5 @@
 import 'package:ditonton/domain/entities/movie/genre.dart';
+import 'package:ditonton/domain/entities/tv_series/series_genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesGenreModel extends Equatable {
@@ -21,8 +22,8 @@ class TvSeriesGenreModel extends Equatable {
         "name": name,
       };
 
-  Genre toEntity() {
-    return Genre(id: this.id, name: this.name);
+  SeriesGenre toEntity() {
+    return SeriesGenre(id: this.id, name: this.name);
   }
 
   @override
