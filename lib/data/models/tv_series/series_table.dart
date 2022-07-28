@@ -1,5 +1,3 @@
-import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/entities/tv_series/series.dart';
@@ -18,16 +16,16 @@ class TvSeriesTable extends Equatable {
     required this.overview,
   });
 
-  factory TvSeriesTable.fromEntity(TvSeriesDetail movie) => TvSeriesTable(
-        id: movie.id,
-        title: movie.title,
-        posterPath: movie.posterPath,
-        overview: movie.overview,
+  factory TvSeriesTable.fromEntity(TvSeriesDetail series) => TvSeriesTable(
+        id: series.id!,
+        title: series.originalName,
+        posterPath: series.posterPath,
+        overview: series.overview,
       );
 
   factory TvSeriesTable.fromMap(Map<String, dynamic> map) => TvSeriesTable(
         id: map['id'],
-        title: map['title'],
+        title: map['name'],
         posterPath: map['posterPath'],
         overview: map['overview'],
       );
@@ -43,7 +41,7 @@ class TvSeriesTable extends Equatable {
         id: id,
         overview: overview,
         posterPath: posterPath,
-        title: title,
+        name: title,
       );
 
   @override

@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 
 import 'package:ditonton/common/state_enum.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +43,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
         builder: (context, provider, child) {
           if (provider.tvSeriesState == RequestState.Loading) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(),
             );
           } else if (provider.tvSeriesState == RequestState.Loaded) {
             final tvSeries = provider.tvSeries;
@@ -69,6 +72,7 @@ class DetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("Ini isinyaa ${tvSeries.originalName}");
     final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
@@ -76,7 +80,7 @@ class DetailContent extends StatelessWidget {
           imageUrl: 'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => Center(
-            child: CircularProgressIndicator(),
+            child: CupertinoActivityIndicator(),
           ),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),
@@ -104,7 +108,7 @@ class DetailContent extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              tvSeries.title,
+                              tvSeries.originalName ?? '',
                               style: kHeading5,
                             ),
                             ElevatedButton(
@@ -155,15 +159,15 @@ class DetailContent extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              _showGenres(tvSeries.genres),
+                              _showGenres(tvSeries.genres!),
                             ),
-                            Text(
-                              _showDuration(tvSeries.runtime),
-                            ),
+                            // Text(
+                            //   _showDuration(tvSeries.),
+                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
-                                  rating: tvSeries.voteAverage / 2,
+                                  rating: tvSeries.voteAverage ?? 0 / 2,
                                   itemCount: 5,
                                   itemBuilder: (context, index) => Icon(
                                     Icons.star,
@@ -180,7 +184,7 @@ class DetailContent extends StatelessWidget {
                               style: kHeading6,
                             ),
                             Text(
-                              tvSeries.overview,
+                              tvSeries.overview ?? '',
                             ),
                             SizedBox(height: 16),
                             Text(

@@ -2,6 +2,7 @@ import 'package:ditonton/common/state_enum.dart';
 
 import 'package:ditonton/presentation/provider/tv_series/top_rated_series_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CupertinoActivityIndicator(),
               );
             } else if (data.state == RequestState.Loaded) {
               return ListView.builder(

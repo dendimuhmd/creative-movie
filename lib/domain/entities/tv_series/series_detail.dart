@@ -3,33 +3,43 @@ import 'package:ditonton/domain/entities/tv_series/series_genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesDetail extends Equatable {
-  TvSeriesDetail({
-    required this.adult,
-    required this.backdropPath,
-    required this.genres,
-    required this.id,
-    required this.originalTitle,
-    required this.overview,
-    required this.posterPath,
-    required this.releaseDate,
-    required this.runtime,
-    required this.title,
-    required this.voteAverage,
-    required this.voteCount,
-  });
+  TvSeriesDetail(
+      {required this.adult,
+      required this.backdropPath,
+      required this.genres,
+      required this.id,
+      required this.overview,
+      required this.posterPath,
+      required this.voteAverage,
+      required this.voteCount,
+      required this.originalName});
 
-  final bool adult;
-  final String? backdropPath;
-  final List<SeriesGenre> genres;
-  final int id;
-  final String originalTitle;
-  final String overview;
-  final String posterPath;
-  final String releaseDate;
-  final int runtime;
-  final String title;
-  final double voteAverage;
-  final int voteCount;
+  bool? adult;
+  String? backdropPath;
+
+  List<int>? episodeRunTime;
+  DateTime? firstAirDate;
+  List<SeriesGenre>? genres;
+  String? homepage;
+  int? id;
+  bool? inProduction;
+  List<String>? languages;
+  DateTime? lastAirDate;
+
+  int? numberOfEpisodes;
+  int? numberOfSeasons;
+  List<String>? originCountry;
+  String? originalLanguage;
+  String? originalName;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+
+  String? status;
+  String? tagline;
+  String? type;
+  double? voteAverage;
+  int? voteCount;
 
   @override
   List<Object?> get props => [
@@ -37,11 +47,8 @@ class TvSeriesDetail extends Equatable {
         backdropPath,
         genres,
         id,
-        originalTitle,
         overview,
         posterPath,
-        releaseDate,
-        title,
         voteAverage,
         voteCount,
       ];

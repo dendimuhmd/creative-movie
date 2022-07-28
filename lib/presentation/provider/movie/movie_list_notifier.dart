@@ -49,7 +49,6 @@ class MovieListNotifier extends ChangeNotifier {
         notifyListeners();
       },
       (moviesData) {
-        print("isinya ${moviesData}");
         _nowPlayingState = RequestState.Loaded;
         _nowPlayingMovies = moviesData;
         notifyListeners();

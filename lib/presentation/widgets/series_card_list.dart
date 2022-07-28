@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class TvSeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            "TvSeriesDetailPage.ROUTE_NAME",
+            TvSeriesDetailPage.ROUTE_NAME,
             arguments: tvSeries.id,
           );
         },
@@ -36,7 +37,7 @@ class TvSeriesCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tvSeries.title ?? '-',
+                      tvSeries.name ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,

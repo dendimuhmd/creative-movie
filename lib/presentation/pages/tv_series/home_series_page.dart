@@ -4,18 +4,23 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/popular_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/search_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/top_rated_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/watchlist_series_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../domain/entities/tv_series/series.dart';
 import '../../provider/tv_series/series_list_notifier.dart';
+import '../movie/search_page.dart';
+import '../movie/watchlist_movies_page.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
+  static const ROUTE_NAME = '/tv_series';
   @override
   _HomeTvSeriesPageState createState() => _HomeTvSeriesPageState();
 }
@@ -46,16 +51,23 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
             ),
             ListTile(
               leading: Icon(Icons.movie),
-              title: Text('TvSeriess'),
+              title: Text('Movies'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.movie),
+              title: Text('Series'),
+              onTap: () {
+                Navigator.pushNamed(context, HomeTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistTvSeriesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -69,11 +81,11 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Ditonton'),
+        title: Text('Tv Series'),
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, TvSeriesSearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           )
@@ -93,7 +105,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.nowPlayingState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(
@@ -111,7 +123,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.popularTvSeriessState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.popularTvSeriess as List<TvSeries>);
@@ -128,7 +140,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.topRatedTvSeriessState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.topRatedTvSeriess as List<TvSeries>);
@@ -193,7 +205,7 @@ class TvSeriesList extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
                   placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
+                    child: CupertinoActivityIndicator(),
                   ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),

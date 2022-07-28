@@ -3,6 +3,7 @@ import 'package:ditonton/common/utils.dart';
 
 import 'package:ditonton/presentation/provider/tv_series/watchlist_series_notifier.dart';
 import 'package:ditonton/presentation/widgets/series_card_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -46,7 +47,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
           builder: (context, data, child) {
             if (data.watchlistState == RequestState.Loading) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CupertinoActivityIndicator(),
               );
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(
