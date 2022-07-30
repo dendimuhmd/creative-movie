@@ -96,6 +96,9 @@ void main() {
       final result = await dataSource.getWatchlistTvSeriess();
       // assert
       expect(result, [testTvSeriesTable]);
+      // verify(dataSource
+      //     .getWatchlistTvSeriess()
+      //     .then((value) => [testTvSeriesMap]));
     });
   });
 }

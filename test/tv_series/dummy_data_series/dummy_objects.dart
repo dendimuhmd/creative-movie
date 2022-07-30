@@ -38,7 +38,7 @@ final testWatchlistTvSeries = TvSeries.watchlist(
 
 final testTvSeriesTable = TvSeriesTable(
   id: 1,
-  title: 'title',
+  title: 'originalName',
   posterPath: 'posterPath',
   overview: 'overview',
 );
@@ -47,5 +47,5 @@ final testTvSeriesMap = {
   'id': 1,
   'overview': 'overview',
   'posterPath': 'posterPath',
-  'title': 'title',
+  'title': 'originalName',
 };
