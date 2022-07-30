@@ -11,6 +11,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 
+import '../../../dummy_data_series/dummy_objects.dart';
 import 'series_detail_page_test.mocks.dart';
 
 @GenerateMocks([TvSeriesDetailNotifier])
@@ -31,7 +32,7 @@ void main() {
   }
 
   testWidgets(
-      'Watchlist button should display add icon when movie not added to watchlist',
+      'Watchlist button should display add icon when TvSeries not added to watchlist',
       (WidgetTester tester) async {
     when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeries).thenReturn(testTvSeriesDetail);
@@ -47,7 +48,7 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should dispay check icon when movie is added to wathclist',
+      'Watchlist button should dispay check icon when TvSeries is added to wathclist',
       (WidgetTester tester) async {
     when(mockNotifier.tvSeriesState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeries).thenReturn(testTvSeriesDetail);

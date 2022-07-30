@@ -1,16 +1,16 @@
-import 'package:ditonton/domain/usecases/movie/get_watchlist_status.dart';
+import 'package:ditonton/domain/usecases/tv_series/get_watchlist_status_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../helpers/tv_series/series_test_helper.mocks.dart';
 
 void main() {
-  late GetWatchListStatus usecase;
+  late GetWatchListStatusTvSeries usecase;
   late MockTvSeriesRepository mockTvSeriesRepository;
 
   setUp(() {
     mockTvSeriesRepository = MockTvSeriesRepository();
-    usecase = GetWatchListStatus(mockTvSeriesRepository);
+    usecase = GetWatchListStatusTvSeries(mockTvSeriesRepository);
   });
 
   test('should get watchlist status from repository', () async {

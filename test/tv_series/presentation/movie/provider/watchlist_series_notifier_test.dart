@@ -1,13 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/usecases/movie/get_watchlist_movies.dart';
+
 import 'package:ditonton/domain/usecases/tv_series/get_watchlist_series.dart';
-import 'package:ditonton/presentation/provider/movie/watchlist_movie_notifier.dart';
+
 import 'package:ditonton/presentation/provider/tv_series/watchlist_series_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
+import '../../../dummy_data_series/dummy_objects.dart';
+import 'watchlist_series_notifier_test.mocks.dart';
 
 @GenerateMocks([GetWatchlistTvSeries])
 void main() {
@@ -17,7 +20,7 @@ void main() {
 
   setUp(() {
     listenerCallCount = 0;
-    mockGetWatchlistTvSeriess = MockGetWatchlistTvSeriess();
+    mockGetWatchlistTvSeriess = MockGetWatchlistTvSeries();
     provider = WatchlistTvSeriesNotifier(
       getWatchlistTvSeriess: mockGetWatchlistTvSeriess,
     )..addListener(() {
@@ -25,7 +28,8 @@ void main() {
       });
   });
 
-  test('should change movies data when data is gotten successfully', () async {
+  test('should change TvSeriess data when data is gotten successfully',
+      () async {
     // arrange
     when(mockGetWatchlistTvSeriess.execute())
         .thenAnswer((_) async => Right([testWatchlistTvSeries]));

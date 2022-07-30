@@ -13,19 +13,19 @@ class TvSeriesModel extends Equatable {
       required this.posterPath,
       required this.voteAverage,
       required this.voteCount,
-      required this.firstAirDate,
-      required this.name,
-      required this.originCountry,
-      required this.originalLanguage,
+      // required this.firstAirDate,
+      // required this.name,
+      // required this.originCountry,
+      // required this.originalLanguage,
       required this.originalName});
 
   String backdropPath;
-  DateTime firstAirDate;
+  // DateTime firstAirDate;
   List<int> genreIds;
   int id;
-  String name;
-  List<String> originCountry;
-  String originalLanguage;
+  // String name;
+  // List<String> originCountry;
+  // String originalLanguage;
   String originalName;
   String overview;
   double popularity;
@@ -44,11 +44,11 @@ class TvSeriesModel extends Equatable {
       posterPath: json["poster_path"],
       voteAverage: json["vote_average"].toDouble(),
       voteCount: json["vote_count"],
-      firstAirDate: DateTime.parse(json['first_air_date']),
-      name: json['name'],
-      originalLanguage: json['original_language'],
+      // firstAirDate: DateTime.parse(json['first_air_date']),
+      // name: json['name'],
+      // originalLanguage: json['original_language'],
       originalName: json['original_title'] ?? json['original_name'],
-      originCountry: List<String>.from(json['origin_country'].map((x) => x)),
+      // originCountry: List<String>.from(json['origin_country'].map((x) => x)),
     );
   }
 
@@ -65,15 +65,15 @@ class TvSeriesModel extends Equatable {
 
   TvSeries toEntity() {
     return TvSeries(
-      backdropPath: this.backdropPath,
-      genreIds: this.genreIds,
-      id: this.id,
-      overview: this.overview,
-      popularity: this.popularity,
-      posterPath: this.posterPath,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
-    );
+        backdropPath: this.backdropPath,
+        genreIds: this.genreIds,
+        id: this.id,
+        overview: this.overview,
+        popularity: this.popularity,
+        posterPath: this.posterPath,
+        voteAverage: this.voteAverage,
+        voteCount: this.voteCount,
+        originalName: this.originalName);
   }
 
   @override

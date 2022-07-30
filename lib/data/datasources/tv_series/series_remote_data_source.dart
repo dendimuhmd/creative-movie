@@ -30,7 +30,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         await client.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).movieList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSerieslist;
     } else {
       throw ServerException();
     }
@@ -54,7 +54,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         .get(Uri.parse('$BASE_URL/tv/$id/recommendations?$API_KEY'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).movieList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSerieslist;
     } else {
       throw ServerException();
     }
@@ -66,7 +66,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         await client.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).movieList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSerieslist;
     } else {
       throw ServerException();
     }
@@ -78,7 +78,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         await client.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).movieList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSerieslist;
     } else {
       throw ServerException();
     }
@@ -90,7 +90,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$query'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).movieList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSerieslist;
     } else {
       throw ServerException();
     }

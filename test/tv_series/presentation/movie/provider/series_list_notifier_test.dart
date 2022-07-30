@@ -1,23 +1,20 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
+
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-import 'package:ditonton/domain/usecases/movie/get_now_playing_movies.dart';
+
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/movie/get_popular_movies.dart';
-import 'package:ditonton/domain/usecases/movie/get_top_rated_movies.dart';
+
 import 'package:ditonton/domain/usecases/tv_series/get_now_playing_series.dart';
 import 'package:ditonton/domain/usecases/tv_series/get_popular_series.dart';
 import 'package:ditonton/domain/usecases/tv_series/get_top_rated_series.dart';
-import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
+
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv_series/series_list_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'popular_series_notifier_test.mocks.dart';
 import 'series_list_notifier_test.mocks.dart';
-import 'top_rated_series_notifier_test.mocks.dart';
 
 @GenerateMocks(
     [GetNowPlayingTvSeriess, GetPopularTvSeriess, GetTopRatedTvSeriess])
@@ -43,23 +40,19 @@ void main() {
   });
 
   final tTvSeries = TvSeries(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    popularity: 1,
-    posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
-    voteAverage: 1,
-    voteCount: 1,
-  );
+      originalName: "2 Good 2 Be True",
+      posterPath: "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+      id: 135647,
+      overview:
+          "After the mysterious disappearance of his father, Joventino, the cowboy José Leôncio becomes a wealthy farm owner in Pantanal. Over twenty years have passed and, bitter-hearted because of his father vanishing and the escape of his wife to Rio de Janeiro with his baby, José Leôncio has the chance to make amends with the boy, now a young man raised in the big city with very different values and habits than his own.",
+      popularity: 943.32,
+      genreIds: [35, 18],
+      backdropPath: "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+      voteAverage: 7.5,
+      voteCount: 102);
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
-  group('now playing movies', () {
+  group('now playing TvSeriess', () {
     test('initialState should be Empty', () {
       expect(provider.nowPlayingState, equals(RequestState.Empty));
     });
@@ -84,7 +77,7 @@ void main() {
       expect(provider.nowPlayingState, RequestState.Loading);
     });
 
-    test('should change movies when data is gotten successfully', () async {
+    test('should change TvSeriess when data is gotten successfully', () async {
       // arrange
       when(mockGetNowPlayingTvSeriess.execute())
           .thenAnswer((_) async => Right(tTvSeriesList));
@@ -109,7 +102,7 @@ void main() {
     });
   });
 
-  group('popular movies', () {
+  group('popular TvSeriess', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
       when(mockGetPopularTvSeriess.execute())
@@ -121,7 +114,7 @@ void main() {
       // verify(provider.setState(RequestState.Loading));
     });
 
-    test('should change movies data when data is gotten successfully',
+    test('should change TvSeriess data when data is gotten successfully',
         () async {
       // arrange
       when(mockGetPopularTvSeriess.execute())
@@ -147,7 +140,7 @@ void main() {
     });
   });
 
-  group('top rated movies', () {
+  group('top rated TvSeriess', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
       when(mockGetTopRatedTvSeriess.execute())
@@ -158,7 +151,7 @@ void main() {
       expect(provider.topRatedTvSeriessState, RequestState.Loading);
     });
 
-    test('should change movies data when data is gotten successfully',
+    test('should change TvSeriess data when data is gotten successfully',
         () async {
       // arrange
       when(mockGetTopRatedTvSeriess.execute())

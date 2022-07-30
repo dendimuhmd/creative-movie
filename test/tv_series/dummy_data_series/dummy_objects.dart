@@ -1,46 +1,37 @@
 import 'package:ditonton/data/models/tv_series/series_table.dart';
-import 'package:ditonton/domain/entities/movie/genre.dart';
 
 import 'package:ditonton/domain/entities/tv_series/series.dart';
 import 'package:ditonton/domain/entities/tv_series/series_detail.dart';
+import 'package:ditonton/domain/entities/tv_series/series_genre.dart';
 
 final testTvSeries = TvSeries(
-  adult: false,
-  backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: [14, 28],
-  id: 557,
-  originalTitle: 'Spider-Man',
-  overview:
-      'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
-  popularity: 60.441,
-  posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
-  releaseDate: '2002-05-01',
-  title: 'Spider-Man',
-  video: false,
-  voteAverage: 7.2,
-  voteCount: 13507,
-);
+    originalName: "2 Good 2 Be True",
+    posterPath: "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+    id: 135647,
+    overview:
+        "After the mysterious disappearance of his father, Joventino, the cowboy José Leôncio becomes a wealthy farm owner in Pantanal. Over twenty years have passed and, bitter-hearted because of his father vanishing and the escape of his wife to Rio de Janeiro with his baby, José Leôncio has the chance to make amends with the boy, now a young man raised in the big city with very different values and habits than his own.",
+    popularity: 943.32,
+    genreIds: [35, 18],
+    backdropPath: "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+    voteAverage: 7.5,
+    voteCount: 102);
 
 final testTvSeriesList = [testTvSeries];
 
 final testTvSeriesDetail = TvSeriesDetail(
-  adult: false,
-  backdropPath: 'backdropPath',
-  genres: [Genre(id: 1, name: 'Action')],
-  id: 1,
-  originalTitle: 'originalTitle',
-  overview: 'overview',
-  posterPath: 'posterPath',
-  releaseDate: 'releaseDate',
-  runtime: 120,
-  title: 'title',
-  voteAverage: 1,
-  voteCount: 1,
-);
+    genres: [SeriesGenre(id: 1, name: 'Drama')],
+    originalName: "originalName",
+    adult: false,
+    backdropPath: "backdropPath",
+    id: 1,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    voteAverage: 1,
+    voteCount: 1);
 
 final testWatchlistTvSeries = TvSeries.watchlist(
   id: 1,
-  title: 'title',
+  originalName: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
 );

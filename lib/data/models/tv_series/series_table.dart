@@ -25,7 +25,7 @@ class TvSeriesTable extends Equatable {
 
   factory TvSeriesTable.fromMap(Map<String, dynamic> map) => TvSeriesTable(
         id: map['id'],
-        title: map['name'],
+        title: map['original_name'],
         posterPath: map['posterPath'],
         overview: map['overview'],
       );
@@ -41,7 +41,7 @@ class TvSeriesTable extends Equatable {
         id: id,
         overview: overview,
         posterPath: posterPath,
-        name: title,
+        originalName: title,
       );
 
   @override

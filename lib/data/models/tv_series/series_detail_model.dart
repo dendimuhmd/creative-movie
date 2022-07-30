@@ -10,16 +10,16 @@ class TvSeriesDetailResponse extends Equatable {
   TvSeriesDetailResponse({
     required this.originalName,
     // required this.originCountry,
-    required this.numberOfSeasons,
+    // required this.numberOfSeasons,
     // required this.languages,
     // required this.episodeRunTime,
-    required this.type,
-    required this.lastAirDate,
-    required this.numberOfEpisodes,
-    required this.inProduction,
+    // required this.type,
+    // required this.lastAirDate,
+    // required this.numberOfEpisodes,
+    // required this.inProduction,
     required this.adult,
     required this.backdropPath,
-    required this.firstAirDate,
+    // required this.firstAirDate,
     required this.genres,
     required this.homepage,
     required this.id,
@@ -37,16 +37,16 @@ class TvSeriesDetailResponse extends Equatable {
   String backdropPath;
 
   // List<int> episodeRunTime;
-  DateTime firstAirDate;
+  // DateTime firstAirDate;
   List<TvSeriesGenreModel> genres;
   String homepage;
   int id;
-  bool inProduction;
+  // bool inProduction;
   // List<String>? languages;
-  DateTime lastAirDate;
+  // DateTime lastAirDate;
 
-  int numberOfEpisodes;
-  int numberOfSeasons;
+  // int numberOfEpisodes;
+  // int numberOfSeasons;
   // List<String> originCountry;
   String originalLanguage;
   String originalName;
@@ -56,7 +56,7 @@ class TvSeriesDetailResponse extends Equatable {
 
   String status;
   String tagline;
-  String type;
+  // String type;
   double voteAverage;
   int voteCount;
 
@@ -64,13 +64,13 @@ class TvSeriesDetailResponse extends Equatable {
     log("Masuk sini ${json['original_name']}");
     return TvSeriesDetailResponse(
       adult: json["adult"],
-      firstAirDate: DateTime.parse(json['first_air_date']),
+      // firstAirDate: DateTime.parse(json['first_air_date']),
       originalName: json['original_name'],
-      type: json['type'],
-      numberOfSeasons: json['number_of_seasons'],
-      numberOfEpisodes: json['number_of_episodes'],
-      lastAirDate: DateTime.parse(json['last_air_date']),
-      inProduction: json['in_production'],
+      // type: json['type'],
+      // numberOfSeasons: json['number_of_seasons'],
+      // numberOfEpisodes: json['number_of_episodes'],
+      // lastAirDate: DateTime.parse(json['last_air_date']),
+      // inProduction: json['in_production'],
       // originCountry: json['origin_country'],
       // episodeRunTime: json['episode_run_time'],
       backdropPath: json["backdrop_path"],

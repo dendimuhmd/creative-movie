@@ -10,6 +10,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import 'series_search_notifier_test.mocks.dart';
+
 @GenerateMocks([SearchTvSeriess])
 void main() {
   late TvSeriesSearchNotifier provider;
@@ -26,25 +28,20 @@ void main() {
   });
 
   final tTvSeriesModel = TvSeries(
-    adult: false,
-    backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
-    id: 557,
-    originalTitle: 'Spider-Man',
-    overview:
-        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
-    popularity: 60.441,
-    posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
-    releaseDate: '2002-05-01',
-    title: 'Spider-Man',
-    video: false,
-    voteAverage: 7.2,
-    voteCount: 13507,
-  );
+      originalName: "2 Good 2 Be True",
+      posterPath: "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+      id: 135647,
+      overview:
+          "Car mechanic Eloy makes a terrible first impression on Ali, who works for a real estate magnate. But both of them are hiding their true personas.",
+      popularity: 943.32,
+      genreIds: [35, 18],
+      backdropPath: "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+      voteAverage: 7.5,
+      voteCount: 102);
   final tTvSeriesList = <TvSeries>[tTvSeriesModel];
   final tQuery = 'spiderman';
 
-  group('search movies', () {
+  group('search TvSeriess', () {
     test('should change state to loading when usecase is called', () async {
       // arrange
       when(mockSearchTvSeriess.execute(tQuery))

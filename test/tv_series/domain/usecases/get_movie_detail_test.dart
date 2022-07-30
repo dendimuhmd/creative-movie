@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../helpers/tv_series/series_test_helper.mocks.dart';
+import '../../dummy_data_series/dummy_objects.dart';
 
 void main() {
   late GetTvSeriesDetail usecase;
@@ -17,7 +18,7 @@ void main() {
 
   final tId = 1;
 
-  test('should get movie detail from the repository', () async {
+  test('should get TvSeriess detail from the repository', () async {
     // arrange
     when(mockTvSeriesRepository.getTvSeriesDetail(tId))
         .thenAnswer((_) async => Right(testTvSeriesDetail));

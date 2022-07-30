@@ -1,22 +1,23 @@
 import 'package:equatable/equatable.dart';
 
 class TvSeries extends Equatable {
-  TvSeries({
-    required this.backdropPath,
-    required this.genreIds,
-    required this.id,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.voteAverage,
-    required this.voteCount,
-  });
+  TvSeries(
+      {required this.backdropPath,
+      required this.genreIds,
+      required this.id,
+      required this.overview,
+      required this.popularity,
+      required this.posterPath,
+      required this.voteAverage,
+      required this.voteCount,
+      // required this.name,
+      required this.originalName});
 
   TvSeries.watchlist({
     required this.id,
     required this.overview,
     required this.posterPath,
-    required this.name,
+    required this.originalName,
   });
   String? backdropPath;
   DateTime? firstAirDate;
@@ -42,5 +43,6 @@ class TvSeries extends Equatable {
         posterPath,
         voteAverage,
         voteCount,
+        originalName
       ];
 }

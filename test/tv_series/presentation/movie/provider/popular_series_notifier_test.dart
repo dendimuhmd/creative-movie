@@ -1,15 +1,17 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
+
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-import 'package:ditonton/domain/usecases/movie/get_popular_movies.dart';
+
 import 'package:ditonton/domain/usecases/tv_series/get_popular_series.dart';
-import 'package:ditonton/presentation/provider/movie/popular_movies_notifier.dart';
+
 import 'package:ditonton/presentation/provider/tv_series/popular_series_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
+import 'popular_series_notifier_test.mocks.dart';
 
 @GenerateMocks([GetPopularTvSeriess])
 void main() {
@@ -27,20 +29,16 @@ void main() {
   });
 
   final tTvSeries = TvSeries(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    popularity: 1,
-    posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
-    voteAverage: 1,
-    voteCount: 1,
-  );
+      originalName: "2 Good 2 Be True",
+      posterPath: "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+      id: 135647,
+      overview:
+          "Car mechanic Eloy makes a terrible first impression on Ali, who works for a real estate magnate. But both of them are hiding their true personas.",
+      popularity: 943.32,
+      genreIds: [35, 18],
+      backdropPath: "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+      voteAverage: 7.5,
+      voteCount: 102);
 
   final tTvSeriesList = <TvSeries>[tTvSeries];
 
@@ -55,7 +53,8 @@ void main() {
     expect(listenerCallCount, 1);
   });
 
-  test('should change movies data when data is gotten successfully', () async {
+  test('should change TvSeriess data when data is gotten successfully',
+      () async {
     // arrange
     when(mockGetPopularTvSeriess.execute())
         .thenAnswer((_) async => Right(tTvSeriesList));
