@@ -38,7 +38,7 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
               return Center(
-                child: CupertinoActivityIndicator(),
+                child: CircularProgressIndicator(),
               );
             } else if (data.state == RequestState.Loaded) {
               return ListView.builder(

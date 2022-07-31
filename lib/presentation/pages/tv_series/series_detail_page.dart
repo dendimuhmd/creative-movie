@@ -44,7 +44,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
         builder: (context, provider, child) {
           if (provider.tvSeriesState == RequestState.Loading) {
             return Center(
-              child: CupertinoActivityIndicator(),
+              child: CircularProgressIndicator(),
             );
           } else if (provider.tvSeriesState == RequestState.Loaded) {
             final tvSeries = provider.tvSeries;
@@ -81,7 +81,7 @@ class DetailContent extends StatelessWidget {
           imageUrl: 'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => Center(
-            child: CupertinoActivityIndicator(),
+            child: CircularProgressIndicator(),
           ),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),

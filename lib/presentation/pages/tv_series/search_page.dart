@@ -43,7 +43,7 @@ class TvSeriesSearchPage extends StatelessWidget {
               builder: (context, data, child) {
                 if (data.state == RequestState.Loading) {
                   return Center(
-                    child: CupertinoActivityIndicator(),
+                    child: CircularProgressIndicator(),
                   );
                 } else if (data.state == RequestState.Loaded) {
                   final result = data.searchResult;

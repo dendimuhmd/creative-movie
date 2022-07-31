@@ -14,6 +14,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../dummy_data_series/dummy_objects.dart';
+import 'series_detail_notifier_test.mocks.dart';
 
 @GenerateMocks([
   GetTvSeriesDetail,

@@ -199,8 +199,8 @@ void main() {
   });
 
   group('search tv', () {
-    final tSearchResult = TvSeriesResponse.fromJson(json.decode(
-            readJson('dummy_data_series/search_2good2betrue_series.json')))
+    final tSearchResult = TvSeriesResponse.fromJson(json.decode(readJson(
+            'tv_series/dummy_data_series/search_2good2betrue_series.json')))
         .tvSerieslist;
     final tQuery = '2 Good 2 Be True';
 

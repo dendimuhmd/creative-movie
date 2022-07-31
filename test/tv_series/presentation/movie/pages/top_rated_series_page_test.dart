@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart';
 
 import 'package:provider/provider.dart';
 
+import 'top_rated_series_page_test.mocks.dart';
+
 @GenerateMocks([TopRatedTvSeriessNotifier])
 void main() {
   late MockTopRatedTvSeriessNotifier mockNotifier;
@@ -26,18 +28,18 @@ void main() {
     );
   }
 
-  // testWidgets('Page should display progress bar when loading',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.state).thenReturn(RequestState.Loading);
+  testWidgets('Page should display progress bar when loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.Loading);
 
-  //   final progressFinder = find.byType(CircularProgressIndicator);
-  //   final centerFinder = find.byType(Center);
+    final progressFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
 
-  //   await tester.pumpWidget(_makeTestableWidget(TopRatedSeriesPage()));
+    await tester.pumpWidget(_makeTestableWidget(TopRatedSeriesPage()));
 
-  //   expect(centerFinder, findsOneWidget);
-  //   expect(progressFinder, findsOneWidget);
-  // });
+    expect(centerFinder, findsOneWidget);
+    expect(progressFinder, findsOneWidget);
+  });
 
   testWidgets('Page should display when data is loaded',
       (WidgetTester tester) async {

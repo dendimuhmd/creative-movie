@@ -50,7 +50,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
           builder: (context, data, child) {
             if (data.watchlistState == RequestState.Loading) {
               return Center(
-                child: CupertinoActivityIndicator(),
+                child: CircularProgressIndicator(),
               );
             } else if (data.watchlistState == RequestState.Loaded) {
               return ListView.builder(

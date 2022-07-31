@@ -94,7 +94,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.nowPlayingState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CupertinoActivityIndicator(),
+                    child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.nowPlayingTvSeriess);
@@ -111,7 +111,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.popularTvSeriessState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CupertinoActivityIndicator(),
+                    child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.popularTvSeriess);
@@ -128,7 +128,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                 final state = data.topRatedTvSeriessState;
                 if (state == RequestState.Loading) {
                   return Center(
-                    child: CupertinoActivityIndicator(),
+                    child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.topRatedTvSeriess);
@@ -193,7 +193,7 @@ class TvSeriesList extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
                   placeholder: (context, url) => Center(
-                    child: CupertinoActivityIndicator(),
+                    child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),

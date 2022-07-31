@@ -28,18 +28,18 @@ void main() {
     );
   }
 
-  // testWidgets('Page should display center progress bar when loading',
-  //     (WidgetTester tester) async {
-  //   when(mockNotifier.state).thenReturn(RequestState.Loading);
+  testWidgets('Page should display center progress bar when loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.Loading);
 
-  //   final progressBarFinder = find.byType(CircularProgressIndicator);
-  //   final centerFinder = find.byType(Center);
+    final progressBarFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
 
-  //   await tester.pumpWidget(_makeTestableWidget(PopularSeriesPage()));
+    await tester.pumpWidget(_makeTestableWidget(PopularSeriesPage()));
 
-  //   expect(centerFinder, findsOneWidget);
-  //   expect(progressBarFinder, findsOneWidget);
-  // });
+    expect(centerFinder, findsOneWidget);
+    expect(progressBarFinder, findsOneWidget);
+  });
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
