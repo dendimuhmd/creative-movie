@@ -35,12 +35,45 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblWatchlist (
         id INTEGER PRIMARY KEY,
+        title TEXT,
         original_name TEXT,
         overview TEXT,
         posterPath TEXT
       );
     ''');
   }
+  //----------------------------------------------------------------------------
+
+//Series
+  // static const String _tblWatchlist = 'watchlistSeries';
+
+  // Future<Database?> get database async {
+  //   if (_database == null) {
+  //     _database = await _initDbSeries();
+  //   }
+  //   return _database;
+  // }
+
+  // Future<Database> _initDbSeries() async {
+  //   final path = await getDatabasesPath();
+  //   final databasePath = '$path/ditonton_series.db';
+
+  //   var db =
+  //       await openDatabase(databasePath, version: 1, onCreate: _onCreateseries);
+  //   return db;
+  // }
+
+  // void _onCreateseries(Database db, int version) async {
+  //   await db.execute('''
+  //     CREATE TABLE  $_tblWatchlist (
+  //       id INTEGER PRIMARY KEY,
+  //       original_name TEXT,
+  //       overview TEXT,
+  //       posterPath TEXT
+  //     );
+  //   ''');
+  // }
+//----------------------------------------------------------------------------
 
   Future<int> insertWatchlist(MovieTable movie) async {
     final db = await database;
@@ -52,7 +85,7 @@ class DatabaseHelper {
     return await db!.insert(_tblWatchlist, series.toJson());
   }
 
-//------------------------------------------------------------------------
+//----------------------------------------------------------------------------
   Future<int> removeWatchlist(MovieTable movie) async {
     final db = await database;
     return await db!.delete(

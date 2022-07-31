@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/popular_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/search_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
@@ -47,9 +48,16 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
             ),
             ListTile(
               leading: Icon(Icons.movie),
+              title: Text('Movies'),
+              onTap: () {
+                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.movie),
               title: Text('Series'),
               onTap: () {
-                Navigator.pushNamed(context, HomeTvSeriesPage.ROUTE_NAME);
+                Navigator.pop(context);
               },
             ),
             ListTile(
