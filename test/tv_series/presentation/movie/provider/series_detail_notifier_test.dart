@@ -1,22 +1,19 @@
 import 'package:dartz/dartz.dart';
-
-import 'package:ditonton/domain/entities/tv_series/series.dart';
-
 import 'package:ditonton/common/failure.dart';
-
+import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/tv_series/series.dart';
 import 'package:ditonton/domain/usecases/tv_series/get_series_detail.dart';
 import 'package:ditonton/domain/usecases/tv_series/get_series_recommendations.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/usecases/tv_series/get_watchlist_status_series.dart';
 import 'package:ditonton/domain/usecases/tv_series/remove_watchlist_series.dart';
 import 'package:ditonton/domain/usecases/tv_series/save_watchlist_series.dart';
 import 'package:ditonton/presentation/provider/tv_series/tv_series_detail_notifier.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../dummy_data_series/dummy_objects.dart';
-import 'series_detail_notifier_test.mocks.dart';
 
 @GenerateMocks([
   GetTvSeriesDetail,

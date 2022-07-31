@@ -1,16 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-
 import 'package:ditonton/domain/entities/tv_series/series.dart';
 import 'package:ditonton/domain/usecases/tv_series/search_series.dart';
-
 import 'package:ditonton/presentation/provider/tv_series/series_search_notifier.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'series_search_notifier_test.mocks.dart';
 
 @GenerateMocks([SearchTvSeriess])
 void main() {

@@ -1,17 +1,18 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ditonton/common/constants.dart';
 
-import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/constants.dart';
+import '../../../common/state_enum.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../../domain/entities/tv_series/series_detail.dart';
 import '../../../domain/entities/tv_series/series_genre.dart';
+
 import '../../provider/tv_series/tv_series_detail_notifier.dart';
 
 class TvSeriesDetailPage extends StatefulWidget {
@@ -50,7 +51,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             return SafeArea(
               child: DetailContent(
                 tvSeries,
-                provider.tvSeriesRecommendations as List<TvSeries>,
+                provider.tvSeriesRecommendations,
                 provider.isAddedToWatchlist,
               ),
             );

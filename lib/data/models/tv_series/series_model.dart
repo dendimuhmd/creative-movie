@@ -1,4 +1,3 @@
-import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/entities/tv_series/series.dart';
@@ -41,7 +40,7 @@ class TvSeriesModel extends Equatable {
       id: json["id"],
       overview: json["overview"],
       popularity: json["popularity"].toDouble(),
-      posterPath: json["poster_path"],
+      posterPath: json["poster_path"] ?? '',
       voteAverage: json["vote_average"].toDouble(),
       voteCount: json["vote_count"],
       // firstAirDate: DateTime.parse(json['first_air_date']),

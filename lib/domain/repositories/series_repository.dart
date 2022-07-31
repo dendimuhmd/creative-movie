@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/domain/entities/movie/movie_detail.dart';
-import 'package:ditonton/common/failure.dart';
 
+import '../../common/failure.dart';
 import '../entities/tv_series/series.dart';
 import '../entities/tv_series/series_detail.dart';
 

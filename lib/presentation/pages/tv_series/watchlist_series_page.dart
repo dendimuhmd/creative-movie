@@ -1,11 +1,13 @@
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/common/utils.dart';
-
-import 'package:ditonton/presentation/provider/tv_series/watchlist_series_notifier.dart';
-import 'package:ditonton/presentation/widgets/series_card_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
+
+import '../../../common/state_enum.dart';
+import '../../../common/utils.dart';
+
+import '../../provider/tv_series/watchlist_series_notifier.dart';
+import '../../widgets/series_card_list.dart';
 
 class WatchlistTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tvSeries';
@@ -27,6 +29,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // routeObserver.subscribe(this, ModalRoute.of(context)!);
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 

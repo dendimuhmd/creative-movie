@@ -2,16 +2,14 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/common/failure.dart';
+import '../../common/exception.dart';
+import '../../common/failure.dart';
 
 import '../../domain/entities/tv_series/series.dart';
 import '../../domain/entities/tv_series/series_detail.dart';
 import '../../domain/repositories/series_repository.dart';
-
 import '../datasources/tv_series/series_local_data_source.dart';
 import '../datasources/tv_series/series_remote_data_source.dart';
-
 import '../models/tv_series/series_table.dart';
 
 class TvSeriesRepositoryImpl implements TvSeriesRepository {

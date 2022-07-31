@@ -1,17 +1,13 @@
 import 'package:ditonton/common/state_enum.dart';
-
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-
 import 'package:ditonton/presentation/pages/tv_series/top_rated_series_page.dart';
-
 import 'package:ditonton/presentation/provider/tv_series/top_rated_series_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
-import 'top_rated_series_page_test.mocks.dart';
+import 'package:provider/provider.dart';
 
 @GenerateMocks([TopRatedTvSeriessNotifier])
 void main() {

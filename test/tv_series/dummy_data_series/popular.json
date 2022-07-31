@@ -1,32 +1,28 @@
 {
-  "dates": {
-    "maximum": "2021-05-23",
-    "minimum": "2021-04-05"
-  },
   "page": 1,
   "results": [
-    {
-      "adult": false,
-      "backdrop_path": "/path.jpg",
-      "genre_ids": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "id": 1,
-      "original_language": "en",
-      "original_title": "Original Title",
-      "overview": "Overview",
-      "popularity": 1.0,
-      "poster_path": "/path.jpg",
-      "release_date": "2020-05-05",
-      "title": "Title",
-      "video": false,
-      "vote_average": 1.0,
-      "vote_count": 1
-    }
-  ],
-  "total_pages": 47,
-  "total_results": 940
+      {
+          "backdrop_path": "/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
+          "first_air_date": "2016-07-15",
+          "genre_ids": [
+              18,
+              10765,
+              9648
+          ],
+          "id": 66732,
+          "name": "Stranger Things",
+          "origin_country": [
+              "US"
+          ],
+          "original_language": "en",
+          "original_name": "Stranger Things",
+          "overview": "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.",
+          "popularity": 2060.781,
+          "poster_path": "/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
+          "vote_average": 8.6,
+          "vote_count": 12533
+      }
+    ],
+      "total_pages": 6734,
+      "total_results": 134678
 }

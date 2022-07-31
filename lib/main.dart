@@ -8,6 +8,7 @@ import 'package:ditonton/presentation/pages/movie/search_page.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/home_series_page.dart';
+import 'package:ditonton/presentation/pages/tv_series/popular_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/search_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/top_rated_series_page.dart';
@@ -27,6 +28,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+
+import 'presentation/provider/tv_series/popular_series_notifier.dart';
 
 void main() {
   di.init();
@@ -72,7 +75,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+          create: (_) => di.locator<PopularTvSeriessNotifier>(),
         ),
       ],
       child: MaterialApp(
@@ -115,12 +118,16 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TvSeriesDetailPage(id: id),
                 settings: settings,
               );
+            case PopularSeriesPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => PopularSeriesPage());
             case TvSeriesSearchPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TvSeriesSearchPage());
             case TopRatedSeriesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TopRatedSeriesPage());
             case WatchlistTvSeriesPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => WatchlistTvSeriesPage());
+            case AboutPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => AboutPage());
 
             default:
               return MaterialPageRoute(builder: (_) {

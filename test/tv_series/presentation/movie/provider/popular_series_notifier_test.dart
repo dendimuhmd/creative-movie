@@ -1,17 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-
 import 'package:ditonton/domain/usecases/tv_series/get_popular_series.dart';
-
 import 'package:ditonton/presentation/provider/tv_series/popular_series_notifier.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
-import 'popular_series_notifier_test.mocks.dart';
 
 @GenerateMocks([GetPopularTvSeriess])
 void main() {

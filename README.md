@@ -52,3 +52,5 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
 
 
 flutter pub run build_runner build --delete-conflicting-outputs
+flutter test --coverage                                        
+genhtml coverage/lcov.info -o coverage/html

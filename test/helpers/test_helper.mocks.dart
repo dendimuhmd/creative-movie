@@ -48,7 +48,7 @@ class _FakeStreamedResponse_3 extends _i1.Fake implements _i4.StreamedResponse {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockMovieRepository extends _i1.Mock implements _i5.MovieRepository {
-  MockTvSeriesRepositoryMockMovieRepository() {
+  MockMovieRepository() {
     _i1.throwOnMissingStub(this);
   }
 

@@ -1,6 +1,6 @@
-import 'package:ditonton/data/models/movie/movie_model.dart';
-import 'package:ditonton/data/models/tv_series/series_model.dart';
 import 'package:equatable/equatable.dart';
+
+import 'series_model.dart';
 
 class TvSeriesResponse extends Equatable {
   final List<TvSeriesModel> tvSerieslist;

@@ -1,14 +1,12 @@
 import 'package:ditonton/common/state_enum.dart';
-
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-
 import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
-
 import 'package:ditonton/presentation/provider/tv_series/tv_series_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../dummy_data_series/dummy_objects.dart';

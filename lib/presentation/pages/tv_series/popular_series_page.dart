@@ -1,11 +1,13 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'dart:developer';
 
-import 'package:ditonton/presentation/provider/tv_series/popular_series_notifier.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/state_enum.dart';
+
+import '../../provider/tv_series/popular_series_notifier.dart';
 import '../../widgets/series_card_list.dart';
 
 class PopularSeriesPage extends StatefulWidget {
@@ -28,7 +30,7 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Movies'),
+        title: Text('Popular Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -42,6 +44,7 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tvSeries = data.tvSeriess[index];
+                  log(tvSeries.id.toString());
                   return TvSeriesCard(tvSeries);
                 },
                 itemCount: data.tvSeriess.length,

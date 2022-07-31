@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/entities/tv_series/series.dart';
@@ -5,34 +7,37 @@ import '../../../domain/entities/tv_series/series_detail.dart';
 
 class TvSeriesTable extends Equatable {
   final int id;
-  final String? title;
+  final String? originalName;
   final String? posterPath;
   final String? overview;
 
   TvSeriesTable({
     required this.id,
-    required this.title,
+    required this.originalName,
     required this.posterPath,
     required this.overview,
   });
 
-  factory TvSeriesTable.fromEntity(TvSeriesDetail series) => TvSeriesTable(
-        id: series.id!,
-        title: series.originalName,
-        posterPath: series.posterPath,
-        overview: series.overview,
-      );
+  factory TvSeriesTable.fromEntity(TvSeriesDetail series) {
+    log("zzzz masuk${series.originalName!}");
+    return TvSeriesTable(
+      id: series.id!,
+      originalName: series.originalName,
+      posterPath: series.posterPath,
+      overview: series.overview,
+    );
+  }
 
   factory TvSeriesTable.fromMap(Map<String, dynamic> map) => TvSeriesTable(
         id: map['id'],
-        title: map['original_name'],
+        originalName: map['original_name'],
         posterPath: map['posterPath'],
         overview: map['overview'],
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'title': title,
+        'original_name': originalName,
         'posterPath': posterPath,
         'overview': overview,
       };
@@ -41,10 +46,10 @@ class TvSeriesTable extends Equatable {
         id: id,
         overview: overview,
         posterPath: posterPath,
-        originalName: title,
+        originalName: originalName,
       );
 
   @override
   // TODO: implement props
-  List<Object?> get props => [id, title, posterPath, overview];
+  List<Object?> get props => [id, originalName, posterPath, overview];
 }

@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:ditonton/domain/entities/tv_series/series.dart';
-
 import 'package:ditonton/domain/usecases/tv_series/search_series.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -18,7 +17,7 @@ void main() {
   });
 
   final tTvSeriess = <TvSeries>[];
-  final tQuery = 'Spiderman';
+  final tQuery = 'Doraemon';
 
   test('should get list of TvSeriess from the repository', () async {
     // arrange

@@ -1,23 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ditonton/common/constants.dart';
-
-import 'package:ditonton/presentation/pages/about_page.dart';
-
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/popular_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/search_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/top_rated_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/watchlist_series_page.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/constants.dart';
+import '../../../common/state_enum.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../provider/tv_series/series_list_notifier.dart';
-import '../movie/search_page.dart';
-import '../movie/watchlist_movies_page.dart';
+import '../about_page.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv_series';
@@ -46,15 +42,8 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/circle-g.png'),
               ),
-              accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
-            ),
-            ListTile(
-              leading: Icon(Icons.movie),
-              title: Text('Movies'),
-              onTap: () {
-                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
-              },
+              accountName: Text('project'),
+              accountEmail: Text('project@dicoding.com'),
             ),
             ListTile(
               leading: Icon(Icons.movie),
@@ -67,7 +56,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+                Navigator.pushNamed(context, WatchlistTvSeriesPage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -85,7 +74,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, TvSeriesSearchPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           )
@@ -108,8 +97,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                     child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return TvSeriesList(
-                      data.nowPlayingTvSeriess as List<TvSeries>);
+                  return TvSeriesList(data.nowPlayingTvSeriess);
                 } else {
                   return Text('Failed');
                 }
@@ -126,7 +114,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                     child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return TvSeriesList(data.popularTvSeriess as List<TvSeries>);
+                  return TvSeriesList(data.popularTvSeriess);
                 } else {
                   return Text('Failed');
                 }
@@ -143,7 +131,7 @@ class _HomeTvSeriesPageState extends State<HomeTvSeriesPage> {
                     child: CupertinoActivityIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return TvSeriesList(data.topRatedTvSeriess as List<TvSeries>);
+                  return TvSeriesList(data.topRatedTvSeriess);
                 } else {
                   return Text('Failed');
                 }

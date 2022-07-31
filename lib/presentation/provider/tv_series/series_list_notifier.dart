@@ -1,7 +1,6 @@
-import 'package:ditonton/common/state_enum.dart';
-
 import 'package:flutter/material.dart';
 
+import '../../../common/state_enum.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../../domain/usecases/tv_series/get_now_playing_series.dart';
 import '../../../domain/usecases/tv_series/get_popular_series.dart';

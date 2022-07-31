@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 
 import '../../../common/exception.dart';
+
+import 'package:http/http.dart' as http;
+
 import '../../models/tv_series/series_detail_model.dart';
 import '../../models/tv_series/series_model.dart';
 import '../../models/tv_series/series_response.dart';
-import 'package:http/http.dart' as http;
 
 abstract class TvSeriesRemoteDataSource {
   Future<List<TvSeriesModel>> getNowPlayingTvSeriess();
