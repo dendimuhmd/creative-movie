@@ -102,7 +102,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.nowPlayingMovies as List<Movie>);
+                  return MovieList(data.nowPlayingMovies);
                 } else {
                   return Text('Failed');
                 }
@@ -119,7 +119,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.popularMovies as List<Movie>);
+                  return MovieList(data.popularMovies);
                 } else {
                   return Text('Failed');
                 }
@@ -136,7 +136,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.topRatedMovies as List<Movie>);
+                  return MovieList(data.topRatedMovies);
                 } else {
                   return Text('Failed');
                 }

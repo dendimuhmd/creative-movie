@@ -12,7 +12,6 @@ import 'package:mockito/mockito.dart';
 import '../../../helpers/tv_series/series_test_helper.mocks.dart';
 import '../../../json_reader.dart';
 
-@GenerateMocks([http.Client])
 void main() {
   const API_KEY = 'api_key=b0667c4054e7d1f4b4ca0c708d2aac8f';
   const BASE_URL = 'https://api.themoviedb.org/3';

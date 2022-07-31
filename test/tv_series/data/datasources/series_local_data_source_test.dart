@@ -3,7 +3,7 @@ import 'package:ditonton/data/datasources/tv_series/series_local_data_source.dar
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../helpers/test_helper.mocks.dart';
+import '../../../movie/helper/test_helper.mocks.dart';
 import '../../dummy_data_series/dummy_objects.dart';
 
 void main() {

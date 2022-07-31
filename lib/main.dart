@@ -24,7 +24,6 @@ import 'package:ditonton/presentation/provider/tv_series/series_search_notifier.
 import 'package:ditonton/presentation/provider/tv_series/top_rated_series_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series/tv_series_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series/watchlist_series_notifier.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
