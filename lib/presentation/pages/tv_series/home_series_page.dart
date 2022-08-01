@@ -14,7 +14,7 @@ import '../../../common/constants.dart';
 import '../../../common/state_enum.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../provider/tv_series/series_list_notifier.dart';
-import '../about_page.dart';
+import 'package:about/about_page.dart';
 
 class HomeTvSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv_series';
