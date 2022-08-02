@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../common/failure.dart';
+import 'package:core/core.dart';
 import '../../entities/tv_series/series.dart';
 import '../../repositories/series_repository.dart';
 

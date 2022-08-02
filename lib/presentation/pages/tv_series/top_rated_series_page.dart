@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/state_enum.dart';
 import '../../provider/tv_series/top_rated_series_notifier.dart';
 import '../../widgets/series_card_list.dart';
+import 'package:core/core.dart';
 
 class TopRatedSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tvSeries';

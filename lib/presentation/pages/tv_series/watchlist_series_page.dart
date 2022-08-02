@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../common/state_enum.dart';
-import '../../../common/utils.dart';
+import 'package:core/core.dart';
 
 import '../../provider/tv_series/watchlist_series_notifier.dart';
 import '../../widgets/series_card_list.dart';

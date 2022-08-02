@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../common/state_enum.dart';
+import 'package:core/core.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../../domain/usecases/tv_series/get_top_rated_series.dart';
 

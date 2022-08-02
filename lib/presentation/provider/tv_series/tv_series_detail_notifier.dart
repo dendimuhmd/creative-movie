@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/state_enum.dart';
+import 'package:core/core.dart';
+
 import '../../../domain/entities/tv_series/series.dart';
 import '../../../domain/entities/tv_series/series_detail.dart';
 import '../../../domain/usecases/tv_series/get_series_detail.dart';

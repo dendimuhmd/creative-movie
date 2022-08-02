@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../common/state_enum.dart';
+import 'package:core/core.dart';
+
 import '../../../domain/entities/tv_series/series.dart';
 
 part 'series_list_state.dart';

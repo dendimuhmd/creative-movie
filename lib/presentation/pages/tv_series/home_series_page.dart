@@ -8,10 +8,10 @@ import 'package:ditonton/presentation/pages/tv_series/watchlist_series_page.dart
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:core/core.dart';
+
 import 'package:provider/provider.dart';
 
-import '../../../common/constants.dart';
-import '../../../common/state_enum.dart';
 import '../../../domain/entities/tv_series/series.dart';
 import '../../provider/tv_series/series_list_notifier.dart';
 import 'package:about/about_page.dart';

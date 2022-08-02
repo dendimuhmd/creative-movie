@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/state_enum.dart';
+import 'package:core/core.dart';
 
 import '../../provider/tv_series/popular_series_notifier.dart';
 import '../../widgets/series_card_list.dart';

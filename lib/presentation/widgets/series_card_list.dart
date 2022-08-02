@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../common/constants.dart';
+import 'package:core/core.dart';
 
 import '../../domain/entities/tv_series/series.dart';
 import '../pages/tv_series/series_detail_page.dart';
