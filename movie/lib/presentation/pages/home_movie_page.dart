@@ -4,7 +4,6 @@ import 'package:core/domain/entities/movie/movie.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:tv_series/presentation/pages/home_series_page.dart';
 import 'package:watchlist/presentation/pages/watchlist_page.dart';
 
