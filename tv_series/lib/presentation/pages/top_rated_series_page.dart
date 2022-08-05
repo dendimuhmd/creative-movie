@@ -23,9 +23,6 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Rated Tv Shows'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<TopRatedSeriesBloc, TopRatedSeriesState>(

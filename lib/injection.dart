@@ -6,8 +6,6 @@ import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/domain/usecases/get_now_playing_movies.dart';
 import 'package:movie/domain/usecases/get_popular_movies.dart';
 import 'package:movie/domain/usecases/get_top_rated_movies.dart';
-import 'package:movie/domain/usecases/get_watchlist_movies.dart';
-import 'package:movie/domain/usecases/get_watchlist_status.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list_bloc.dart';
 import 'package:movie/presentation/bloc/popular_movie_bloc.dart';
@@ -20,8 +18,12 @@ import 'package:tv_series/domain/usecases/get_popular_series.dart';
 import 'package:tv_series/domain/usecases/get_series_detail.dart';
 import 'package:tv_series/domain/usecases/get_series_recommendations.dart';
 import 'package:tv_series/domain/usecases/get_top_rated_series.dart';
+import 'package:tv_series/presentation/bloc/popular_series_bloc.dart';
 import 'package:tv_series/presentation/bloc/series_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/series_list_bloc.dart';
+import 'package:tv_series/presentation/bloc/top_rated_series_bloc.dart';
+import 'package:watchlist/domain/usecases/movie/get_watchlist_movies.dart';
+import 'package:watchlist/domain/usecases/movie/get_watchlist_status.dart';
 
 import 'package:watchlist/domain/usecases/movie/remove_watchlist.dart';
 import 'package:watchlist/domain/usecases/movie/save_watchlist.dart';
@@ -80,6 +82,16 @@ void init() {
   );
   locator.registerFactory(
     () => TopRatedSeriesListBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularSeriesBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedSeriesBloc(
       locator(),
     ),
   );

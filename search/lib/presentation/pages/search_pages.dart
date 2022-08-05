@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
-  final List<String> _tabTitle = ['Movies', 'Tv Shows'];
+  final List<String> _tabTitle = ['Movies', 'Tv Series'];
   final List<Widget> _bodyPage = [
     const _SearchMovieResult(),
     const _SearchTvShowResult()
