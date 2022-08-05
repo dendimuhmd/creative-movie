@@ -177,9 +177,9 @@ class DetailContent extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Text(
-                              _showGenres(tvSeries.genres!),
-                            ),
+                            // Text(
+                            //   _showGenres(tvSeries.genres!),
+                            // ),
                             // Text(
                             //   _showDuration(tvSeries.),
                             // ),
@@ -197,6 +197,7 @@ class DetailContent extends StatelessWidget {
                                 Text('${tvSeries.voteAverage}')
                               ],
                             ),
+                            SizedBox(height: 16),
                             Text(
                               _showGenres(tvSeries.genres!),
                             ),

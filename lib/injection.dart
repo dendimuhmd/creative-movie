@@ -22,8 +22,7 @@ import 'package:tv_series/domain/usecases/get_series_recommendations.dart';
 import 'package:tv_series/domain/usecases/get_top_rated_series.dart';
 import 'package:tv_series/presentation/bloc/series_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/series_list_bloc.dart';
-import 'package:watchlist/domain/usecases/movie/get_watchlist_movies.dart'
-    as gw;
+
 import 'package:watchlist/domain/usecases/movie/remove_watchlist.dart';
 import 'package:watchlist/domain/usecases/movie/save_watchlist.dart';
 import 'package:watchlist/domain/usecases/tv_series/get_watchlist_series.dart';
@@ -86,6 +85,7 @@ void init() {
   );
 
   // use case
+
   //Movie
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
@@ -93,7 +93,9 @@ void init() {
   locator.registerLazySingleton(() => GetMovieDetail(locator()));
   locator.registerLazySingleton(() => GetMovieRecommendations(locator()));
   locator.registerLazySingleton(() => SearchMovies(locator()));
+
   locator.registerLazySingleton(() => GetWatchListStatus(locator()));
+
   locator.registerLazySingleton(() => SaveWatchlist(locator()));
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));

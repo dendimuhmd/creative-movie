@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _index = 0;
-  final List<String> _tabTitle = ['Movies', 'Tv Shows'];
+  final List<String> _tabTitle = ['Movies', 'Tv Series'];
   final List<Widget> _page = [HomeMoviePage(), HomeTvSeriesPage()];
   void _onSelectedPage(int index) {
     setState(() {

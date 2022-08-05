@@ -72,7 +72,7 @@ class TvSeriesDetailResponse extends Equatable {
       // inProduction: json['in_production'],
       // originCountry: json['origin_country'],
       // episodeRunTime: json['episode_run_time'],
-      backdropPath: json["backdrop_path"],
+      backdropPath: json["backdrop_path"] ?? '',
       genres: List<TvSeriesGenreModel>.from(
           json["genres"].map((x) => TvSeriesGenreModel.fromJson(x))),
       homepage: json["homepage"],
