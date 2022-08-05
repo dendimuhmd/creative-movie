@@ -10,8 +10,6 @@ import 'package:tv_series/presentation/pages/home_series_page.dart';
 import 'package:watchlist/presentation/pages/watchlist_page.dart';
 
 class HomePage extends StatefulWidget {
-  // const HomePage({Key? key}) : super(key: key);
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -57,9 +55,11 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/circle-g.png'),
               ),
-              accountName:
-                  Text('Ditonton', style: kHeading6.copyWith(fontSize: 17)),
-              accountEmail: Text('ditonton@dicoding.com', style: kSubtitle),
+              accountName: Text('Ditonton',
+                  style: kHeading6.copyWith(
+                      fontSize: 17, color: kColorScheme.secondary)),
+              accountEmail: Text('ditonton@dicoding.com',
+                  style: kSubtitle.copyWith(color: kColorScheme.secondary)),
             ),
             ListTile(
               leading: Icon(Icons.movie),

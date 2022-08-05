@@ -1,5 +1,4 @@
 import 'package:about/about.dart';
-import 'package:core/common/utils.dart';
 import 'package:core/core.dart';
 import 'package:ditonton/home_page.dart';
 
@@ -13,7 +12,6 @@ import 'package:movie/presentation/pages/home_movie_page.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:search/presentation/pages/search_pages.dart';

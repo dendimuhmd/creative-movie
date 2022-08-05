@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:sqflite/sqflite.dart';
-
+import 'package:sqflite_sqlcipher/sqflite.dart';
 import '../../../core.dart';
+import 'package:encrypt/encrypt.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
@@ -22,12 +22,16 @@ class DatabaseHelper {
   }
 
   static const String _tblWatchlist = 'watchlist';
+  static const String _tblWatchlistMovies = 'watchlist_movies';
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(databasePath,
+        version: 1,
+        onCreate: _onCreate,
+        password: encrypt('Your secure password...'));
     return db;
   }
 
@@ -40,11 +44,19 @@ class DatabaseHelper {
         posterPath TEXT
       );
     ''');
+    await db.execute('''
+      CREATE TABLE  $_tblWatchlistMovies (
+        id INTEGER PRIMARY KEY,
+        title TEXT,
+        overview TEXT,
+        posterPath TEXT
+      );
+    ''');
   }
 
   Future<int> insertWatchlist(MovieTable movie) async {
     final db = await database;
-    return await db!.insert(_tblWatchlist, movie.toJson());
+    return await db!.insert(_tblWatchlistMovies, movie.toJson());
   }
 
   Future<int> insertWatchlistSeries(TvSeriesTable series) async {
@@ -56,7 +68,7 @@ class DatabaseHelper {
   Future<int> removeWatchlist(MovieTable movie) async {
     final db = await database;
     return await db!.delete(
-      _tblWatchlist,
+      _tblWatchlistMovies,
       where: 'id = ?',
       whereArgs: [movie.id],
     );
@@ -75,7 +87,7 @@ class DatabaseHelper {
   Future<Map<String, dynamic>?> getMovieById(int id) async {
     final db = await database;
     final results = await db!.query(
-      _tblWatchlist,
+      _tblWatchlistMovies,
       where: 'id = ?',
       whereArgs: [id],
     );
@@ -106,7 +118,8 @@ class DatabaseHelper {
 
   Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
     final db = await database;
-    final List<Map<String, dynamic>> results = await db!.query(_tblWatchlist);
+    final List<Map<String, dynamic>> results =
+        await db!.query(_tblWatchlistMovies);
 
     return results;
   }
@@ -117,4 +130,15 @@ class DatabaseHelper {
 
     return results;
   }
+}
+
+String encrypt(String plainText) {
+  final key = Key.fromUtf8('my 32 length key................');
+  final iv = IV.fromLength(16);
+
+  final encrypter = Encrypter(AES(key));
+
+  final encrypted = encrypter.encrypt(plainText, iv: iv);
+
+  return encrypted.base64;
 }

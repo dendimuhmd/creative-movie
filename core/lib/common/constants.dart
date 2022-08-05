@@ -30,7 +30,7 @@ final kTextTheme = TextTheme(
 );
 
 const kColorScheme = ColorScheme(
-  primary: kMikadoYellow,
+  primary: Colors.white,
   primaryContainer: kMikadoYellow,
   secondary: kPrussianBlue,
   secondaryContainer: kPrussianBlue,

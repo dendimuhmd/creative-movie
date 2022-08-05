@@ -2,12 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:core/domain/entities/tv_series/series.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:tv_series/presentation/bloc/popular_series_bloc.dart';
-import 'package:tv_series/presentation/bloc/series_detail_bloc.dart';
+
 import 'package:tv_series/presentation/bloc/series_list_bloc.dart';
 
 import 'popular_series_page.dart';
