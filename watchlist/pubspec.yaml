@@ -14,32 +14,32 @@ dependencies:
   equatable: ^2.0.2
   flutter:
     sdk: flutter
-  firebase_core: ^1.10.0
-  firebase_crashlytics: ^2.3.0
-  flutter_bloc: ^7.3.3
-  provider: ^6.0.0
+  
+  flutter_bloc: ^8.0.0
+  
   rxdart: ^0.27.2
   test_cov_console: ^0.1.5
   core:
     path: ../core
+  flutter_lints: ^2.0.1
   
 
 dev_dependencies:
-  bloc_test: ^8.5.0
-  build_runner: ^2.0.4
-  flutter_lints: ^1.0.0
+#   bloc_test: ^8.5.0
+#   build_runner: ^2.0.4
+  # flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  integration_test:
-    sdk: flutter
-  mockito: ^5.0.8
-  mocktail: ^0.2.0
-  test: ^1.16.0
-  test_api: 0.4.12
-  test_core:
+#   integration_test:
+#     sdk: flutter
+#   mockito: ^5.0.8
+#   mocktail: ^0.2.0
+#   test: ^1.16.0
+#   test_api: 0.4.12
+#   test_core:
 
-dependency_overrides:
-  analyzer: ^1.0.0
+# dependency_overrides:
+#   analyzer: ^1.0.0pp
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
