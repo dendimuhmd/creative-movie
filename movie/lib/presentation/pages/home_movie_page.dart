@@ -63,17 +63,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ],
         ),
       ),
-      // appBar: AppBar(
-      //   title: Text('Movie'),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //         // Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
-      //       },
-      //       icon: Icon(Icons.search),
-      //     )
-      //   ],
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(

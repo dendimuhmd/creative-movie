@@ -1,0 +1,42 @@
+{
+  "page": 1,
+  "results": [
+      {
+          "backdrop_path": "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+          "first_air_date": "2022-05-16",
+          "genre_ids": [
+              35,
+              18
+          ],
+          "id": 135647,
+          "name": "2 Good 2 Be True",
+          "origin_country": [
+              "PH"
+          ],
+          "original_language": "tl",
+          "original_name": "2 Good 2 Be True",
+          "overview": "Car mechanic Eloy makes a terrible first impression on Ali, who works for a real estate magnate. But both of them are hiding their true personas.",
+          "popularity": 943.32,
+          "poster_path": "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+          "vote_average": 7.5,
+          "vote_count": 102
+      },
+      {
+          "backdrop_path": null,
+          "first_air_date": "",
+          "genre_ids": [],
+          "id": 60492,
+          "name": "Too Good to Be True",
+          "origin_country": [],
+          "original_language": "en",
+          "original_name": "Too Good to Be True",
+          "overview": "Too Good to Be True is a 1988 American television film starring Loni Anderson, Patrick Duffy, Daniel Baldwin, Glynnis O'Connor, Larry Drake, Neil Patrick Harris, James Sikking, and Julie Harris.\n\nIt was adapted for the small screen by Timothy Bradshaw, based on the novel Leave Her to Heaven by Ben Ames Williams and was directed by Christian I. Nyby II. After John M. Stahl's Leave Her to Heaven, this is the second film adaption of Williams' book.",
+          "popularity": 0.6,
+          "poster_path": null,
+          "vote_average": 0,
+          "vote_count": 0
+      }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}
