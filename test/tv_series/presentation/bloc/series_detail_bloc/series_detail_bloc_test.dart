@@ -1,19 +1,21 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
+
 import 'package:dartz/dartz.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 
 import 'package:tv_series/domain/usecases/get_series_detail.dart';
 import 'package:tv_series/domain/usecases/get_series_recommendations.dart';
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:tv_series/presentation/bloc/series_detail_bloc.dart';
 import 'package:watchlist/domain/usecases/tv_series/get_watchlist_status_series.dart';
 import 'package:watchlist/domain/usecases/tv_series/remove_watchlist_series.dart';
 import 'package:watchlist/domain/usecases/tv_series/save_watchlist_series.dart';
 
 import '../../../../core/dummy_data/tv_series/dummy_objects.dart';
-import 'series_detail_test_bloc.mocks.dart';
+import 'series_detail_bloc_test.mocks.dart';
 
 @GenerateMocks([
   GetTvSeriesDetail,
@@ -31,17 +33,17 @@ void main() {
   late MockRemoveWatchlistTvSeries mockRemoveWatchlistTvSeries;
 
   setUp(() {
+    mockGetTvSeriesDetail = MockGetTvSeriesDetail();
+    mockGetTvSeriesRecommendations = MockGetTvSeriesRecommendations();
+    mockGetWatchListStatusTvSeries = MockGetWatchListStatusTvSeries();
+    mockSaveWatchlistTvSeries = MockSaveWatchlistTvSeries();
+    mockRemoveWatchlistTvSeries = MockRemoveWatchlistTvSeries();
     seriesDetailBloc = SeriesDetailBloc(
         mockGetTvSeriesDetail,
         mockGetTvSeriesRecommendations,
         mockGetWatchListStatusTvSeries,
         mockRemoveWatchlistTvSeries,
         mockSaveWatchlistTvSeries);
-    mockGetWatchListStatusTvSeries = MockGetWatchListStatusTvSeries();
-    mockGetTvSeriesDetail = MockGetTvSeriesDetail();
-    mockGetTvSeriesRecommendations = MockGetTvSeriesRecommendations();
-    mockSaveWatchlistTvSeries = MockSaveWatchlistTvSeries();
-    mockRemoveWatchlistTvSeries = MockRemoveWatchlistTvSeries();
   });
 
   final tId = 1;
@@ -49,7 +51,7 @@ void main() {
 
   group('Get Series Detail', () {
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-      'Emit Loading',
+      'Shoud emit SeriesDetailLoading, RecomendationLoading, SeriesDetailLoaded and RecomendationLoaded when get  Detail Seriess and Recommendation Success',
       build: () {
         when(mockGetTvSeriesDetail.execute(tId))
             .thenAnswer((_) async => Right(testTvSeriesDetail));
@@ -62,31 +64,62 @@ void main() {
         seriesDetailStateInitial.copyWith(
             tvSeriesDetailState: RequestState.Loading),
         seriesDetailStateInitial.copyWith(
-          tvSeriesState: RequestState.Loaded,
+          tvSeriesState: RequestState.Loading,
           tvSeriesDetail: testTvSeriesDetail,
           tvSeriesDetailState: RequestState.Loaded,
           message: '',
         ),
         seriesDetailStateInitial.copyWith(
-            tvSeriesDetailState: RequestState.Loading),
-        seriesDetailStateInitial.copyWith(
-          tvSeriesState: RequestState.Loaded,
-          tvSeriesDetail: testTvSeriesDetail,
           tvSeriesDetailState: RequestState.Loaded,
+          tvSeriesDetail: testTvSeriesDetail,
+          tvSeriesState: RequestState.Loaded,
           tvSeries: testTvSeriesList,
           message: '',
-        )
+        ),
       ],
       verify: (_) {
         verify(mockGetTvSeriesDetail.execute(tId));
         verify(mockGetTvSeriesRecommendations.execute(tId));
       },
     );
+
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-      'Emit Loading',
+      'Shoud emit SeriesDetailLoading, RecomendationLoading, SeriesDetailLoaded and RecommendationError when Get SeriesRecommendations Failed',
       build: () {
         when(mockGetTvSeriesDetail.execute(tId))
             .thenAnswer((_) async => Right(testTvSeriesDetail));
+        when(mockGetTvSeriesRecommendations.execute(tId))
+            .thenAnswer((_) async => Left(ConnectionFailure('Failed')));
+        return seriesDetailBloc;
+      },
+      act: (bloc) => bloc.add(FetchTvSeriesDetail(tId)),
+      expect: () => [
+        seriesDetailStateInitial.copyWith(
+            tvSeriesDetailState: RequestState.Loading),
+        seriesDetailStateInitial.copyWith(
+          tvSeriesState: RequestState.Loading,
+          tvSeriesDetail: testTvSeriesDetail,
+          tvSeriesDetailState: RequestState.Loaded,
+          message: '',
+        ),
+        seriesDetailStateInitial.copyWith(
+          tvSeriesDetailState: RequestState.Loaded,
+          tvSeriesDetail: testTvSeriesDetail,
+          tvSeriesState: RequestState.Error,
+          message: 'Failed',
+        ),
+      ],
+      verify: (_) {
+        verify(mockGetTvSeriesDetail.execute(tId));
+        verify(mockGetTvSeriesRecommendations.execute(tId));
+      },
+    );
+
+    blocTest<SeriesDetailBloc, SeriesDetailState>(
+      'Shoud emit SeriesDetailError when Get Series Detail Failed',
+      build: () {
+        when(mockGetTvSeriesDetail.execute(tId))
+            .thenAnswer((_) async => Left(ConnectionFailure('Failed')));
         when(mockGetTvSeriesRecommendations.execute(tId))
             .thenAnswer((_) async => Right(testTvSeriesList));
         return seriesDetailBloc;
@@ -96,20 +129,7 @@ void main() {
         seriesDetailStateInitial.copyWith(
             tvSeriesDetailState: RequestState.Loading),
         seriesDetailStateInitial.copyWith(
-          tvSeriesState: RequestState.Loaded,
-          tvSeriesDetail: testTvSeriesDetail,
-          tvSeriesDetailState: RequestState.Loaded,
-          message: '',
-        ),
-        seriesDetailStateInitial.copyWith(
-            tvSeriesDetailState: RequestState.Loading),
-        seriesDetailStateInitial.copyWith(
-          tvSeriesState: RequestState.Loaded,
-          tvSeriesDetail: testTvSeriesDetail,
-          tvSeriesDetailState: RequestState.Loaded,
-          tvSeries: testTvSeriesList,
-          message: 'Failed',
-        )
+            tvSeriesDetailState: RequestState.Error, message: 'Failed'),
       ],
       verify: (_) {
         verify(mockGetTvSeriesDetail.execute(tId));
@@ -120,10 +140,10 @@ void main() {
 
   group('Add watchlist Series', () {
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-      'Give return message and is added to watchlist true when success',
+      'Shoud emit WatchlistMessage and isAddedToWatchlist True when Success AddWatchlist',
       build: () {
         when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
-            .thenAnswer((_) async => Right('Added to watchlist'));
+            .thenAnswer((_) async => Right('Added to Watchlist'));
         when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
             .thenAnswer((_) async => true);
         return seriesDetailBloc;
@@ -131,9 +151,9 @@ void main() {
       act: (bloc) => bloc.add(AddToWatchlist(testTvSeriesDetail)),
       expect: () => [
         seriesDetailStateInitial.copyWith(
-            watchlistMessage: 'Added to WatchList'),
+            watchlistMessage: 'Added to Watchlist'),
         seriesDetailStateInitial.copyWith(
-            watchlistMessage: 'Added to WatchList', isAddedToWatchlist: true),
+            watchlistMessage: 'Added to Watchlist', isAddedToWatchlist: true),
       ],
       verify: (_) {
         verify(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail));
@@ -142,7 +162,7 @@ void main() {
     );
 
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-      'Return failed message when Fail',
+      'Shoud emit watchlistMessage when Failed',
       build: () {
         when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
             .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
@@ -161,23 +181,21 @@ void main() {
     );
   });
 
-  group('Remove watchlist', () {
+  group('Remove watchlist Series', () {
     blocTest<SeriesDetailBloc, SeriesDetailState>(
       'Give success message when remove watchlist',
       build: () {
         when(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail))
-            .thenAnswer((_) async => Right('Remove From Watchlist'));
+            .thenAnswer((_) async => Right('Removed From Watchlist'));
         when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
-            .thenAnswer((_) async => true);
+            .thenAnswer((_) async => false);
         return seriesDetailBloc;
       },
       act: (bloc) => bloc.add(RemoveFromWatchlist(testTvSeriesDetail)),
       expect: () => [
         seriesDetailStateInitial.copyWith(
-            watchlistMessage: 'Remove From Watchlsit'),
-        seriesDetailStateInitial.copyWith(
-            watchlistMessage: 'Remove From Watchlsit',
-            isAddedToWatchlist: true),
+            watchlistMessage: 'Removed From Watchlist',
+            isAddedToWatchlist: false),
       ],
       verify: (_) {
         verify(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail));
@@ -186,7 +204,7 @@ void main() {
     );
 
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-      'Return failed message when Fail',
+      'Shoud emit watchlistMessage when Failed',
       build: () {
         when(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail))
             .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
