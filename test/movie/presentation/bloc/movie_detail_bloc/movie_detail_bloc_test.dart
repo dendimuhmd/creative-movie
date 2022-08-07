@@ -169,7 +169,7 @@ void main() {
     );
   });
 
-  group('AddToWatchlist Movie', () {
+  group('Add watchlist Movie', () {
     blocTest<MovieDetailBloc, MovieDetailState>(
       'Shoud emit WatchlistMessage and isAddedToWatchlist True when Success AddWatchlist',
       build: () {
@@ -211,9 +211,9 @@ void main() {
     );
   });
 
-  group('RemoveFromWatchlist Movie', () {
+  group('Remove watchlist Movie', () {
     blocTest<MovieDetailBloc, MovieDetailState>(
-      'Shoud emit WatchlistMessage and isAddedToWatchlist False when Success RemoveFromWatchlist',
+      'Give success message when remove watchlist',
       build: () {
         when(mockRemoveWatchlist.execute(tMovieDetail))
             .thenAnswer((_) async => Right('Removed From Watchlist'));
@@ -248,23 +248,6 @@ void main() {
       ],
       verify: (_) {
         verify(mockRemoveWatchlist.execute(tMovieDetail));
-        verify(mockGetWatchlistStatus.execute(tMovieDetail.id));
-      },
-    );
-  });
-
-  group('LoadWatchlistStatus', () {
-    blocTest<MovieDetailBloc, MovieDetailState>(
-      'Should Emit AddWatchlistStatus True',
-      build: () {
-        when(mockGetWatchlistStatus.execute(tId)).thenAnswer((_) async => true);
-        return movieDetailBloc;
-      },
-      act: (bloc) => bloc.add(LoadWatchlistStatus(tId)),
-      expect: () => [
-        movieDetailStateInit.copyWith(isAddedToWatchlist: true),
-      ],
-      verify: (_) {
         verify(mockGetWatchlistStatus.execute(tMovieDetail.id));
       },
     );

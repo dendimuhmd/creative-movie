@@ -120,13 +120,88 @@ void main() {
 
   group('Add watchlist Series', () {
     blocTest<SeriesDetailBloc, SeriesDetailState>(
-        'Give return message and is added to watchlist true when success',
-        build: () {
-      when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
-          .thenAnswer((realInvocation) async => Right('Added to watchlist'));
-      when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
-          .thenAnswer((realInvocation) async => true);
-      return seriesDetailBloc;
-    });
+      'Give return message and is added to watchlist true when success',
+      build: () {
+        when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
+            .thenAnswer((_) async => Right('Added to watchlist'));
+        when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
+            .thenAnswer((_) async => true);
+        return seriesDetailBloc;
+      },
+      act: (bloc) => bloc.add(AddToWatchlist(testTvSeriesDetail)),
+      expect: () => [
+        seriesDetailStateInitial.copyWith(
+            watchlistMessage: 'Added to WatchList'),
+        seriesDetailStateInitial.copyWith(
+            watchlistMessage: 'Added to WatchList', isAddedToWatchlist: true),
+      ],
+      verify: (_) {
+        verify(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail));
+        verify(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id));
+      },
+    );
+
+    blocTest<SeriesDetailBloc, SeriesDetailState>(
+      'Return failed message when Fail',
+      build: () {
+        when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
+            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+        when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
+            .thenAnswer((_) async => false);
+        return seriesDetailBloc;
+      },
+      act: (bloc) => bloc.add(AddToWatchlist(testTvSeriesDetail)),
+      expect: () => [
+        seriesDetailStateInitial.copyWith(watchlistMessage: 'Failed'),
+      ],
+      verify: (_) {
+        verify(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail));
+        verify(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id));
+      },
+    );
+  });
+
+  group('Remove watchlist', () {
+    blocTest<SeriesDetailBloc, SeriesDetailState>(
+      'Give success message when remove watchlist',
+      build: () {
+        when(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail))
+            .thenAnswer((_) async => Right('Remove From Watchlist'));
+        when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
+            .thenAnswer((_) async => true);
+        return seriesDetailBloc;
+      },
+      act: (bloc) => bloc.add(RemoveFromWatchlist(testTvSeriesDetail)),
+      expect: () => [
+        seriesDetailStateInitial.copyWith(
+            watchlistMessage: 'Remove From Watchlsit'),
+        seriesDetailStateInitial.copyWith(
+            watchlistMessage: 'Remove From Watchlsit',
+            isAddedToWatchlist: true),
+      ],
+      verify: (_) {
+        verify(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail));
+        verify(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id));
+      },
+    );
+
+    blocTest<SeriesDetailBloc, SeriesDetailState>(
+      'Return failed message when Fail',
+      build: () {
+        when(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail))
+            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+        when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
+            .thenAnswer((_) async => false);
+        return seriesDetailBloc;
+      },
+      act: (bloc) => bloc.add(RemoveFromWatchlist(testTvSeriesDetail)),
+      expect: () => [
+        seriesDetailStateInitial.copyWith(watchlistMessage: 'Failed'),
+      ],
+      verify: (_) {
+        verify(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail));
+        verify(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id));
+      },
+    );
   });
 }
