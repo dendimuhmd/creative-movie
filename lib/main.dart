@@ -1,5 +1,6 @@
 import 'package:about/about.dart';
-import 'package:core/common/http_ssl_pinning.dart';
+
+import 'package:core/common/shared.dart';
 import 'package:core/core.dart';
 import 'package:ditonton/home_page.dart';
 
@@ -28,7 +29,7 @@ import 'package:watchlist/presentation/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentation/pages/watchlist_page.dart';
 
 void main() async {
-  await HttpSSLPinning.init();
+  await Shared.init();
 
   WidgetsFlutterBinding.ensureInitialized();
 

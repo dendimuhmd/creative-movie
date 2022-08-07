@@ -36,10 +36,11 @@ class Shared {
   }
 
   static Future<http.Client> createLEClient() async {
-    IOClient client = IOClient(await Shared.customHttpClient());
+    IOClient client = IOClient(await customHttpClient());
     return client;
   }
 
+//http ssl pinnig
   static Future<http.Client> get _instance async =>
       _clientInstance ??= await createLEClient();
   static http.Client? _clientInstance;
