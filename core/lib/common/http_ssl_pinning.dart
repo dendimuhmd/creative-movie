@@ -1,8 +1,7 @@
 // coverage:ignore-file
 
+import 'package:core/common/shared.dart';
 import 'package:http/http.dart' as http;
-
-import 'shared.dart';
 
 class HttpSSLPinning {
   static Future<http.Client> get _instance async =>
