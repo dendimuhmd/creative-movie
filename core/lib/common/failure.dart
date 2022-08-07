@@ -17,6 +17,10 @@ class ConnectionFailure extends Failure {
   ConnectionFailure(String message) : super(message);
 }
 
+class CertFailure extends Failure {
+  CertFailure(String message) : super(message);
+}
+
 class DatabaseFailure extends Failure {
   DatabaseFailure(String message) : super(message);
 }

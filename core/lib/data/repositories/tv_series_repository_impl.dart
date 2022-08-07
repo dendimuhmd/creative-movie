@@ -28,6 +28,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
@@ -40,6 +42,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
@@ -53,6 +57,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
@@ -65,6 +71,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure('Server Failure'));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
@@ -77,6 +85,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
@@ -89,6 +99,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(CertFailure('Certificated Not Valid:\n${e.message}'));
     }
   }
 
