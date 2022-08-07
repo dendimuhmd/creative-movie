@@ -20,13 +20,6 @@ void main() {
   late MockSearchMovies mockSearchMovies;
   late MockSearchTvSeriess mockSearchTvSeriess;
 
-  // setUp(() {
-  //   searchTvSeriesBloc = SearchTvSeriesBloc(mockSearchTvSeriess);
-  //   mockSearchMovies = MockSearchMovies();
-  //   searchMovieBloc = SearchMovieBloc(mockSearchMovies);
-  //   mockSearchTvSeriess = MockSearchTvSeriess();
-  // });
-
   setUp(() {
     mockSearchTvSeriess = MockSearchTvSeriess();
     mockSearchMovies = MockSearchMovies();
@@ -107,81 +100,66 @@ void main() {
         verify(mockSearchMovies.execute(tQuery));
       },
     );
-  }
 
-      // final tTvShowModel = TvSeries(
-      //   backdropPath: "/xAKMj134XHQVNHLC6rWsccLMenG.jpg",
-      //   genreIds: [10765, 35, 80],
-      //   id: 90462,
-      //     originalName: "Chucky",
-      //     overview:
-      //         "After a vintage Chucky doll turns up at a suburban yard sale, an idyllic American town is thrown into chaos as a series of horrifying murders begin to expose the town’s hypocrisies and secrets. Meanwhile, the arrival of enemies — and allies — from Chucky’s past threatens to expose the truth behind the killings, as well as the demon doll’s untold origins.",
-      //     popularity: 6008.272,
-      //     posterPath: "/iF8ai2QLNiHV4anwY1TuSGZXqfN.jpg",
-      //     voteAverage: 8,
-      //     voteCount: 987);
-      // final tTvShowList = <TvSeries>[tTvShowModel];
-      // final tQueryTvShow = 'chucky';
+    group('Search Tv Shows', () {
+      test('Initial state should be empty', () {
+        expect(searchTvSeriesBloc.state, SearchEmpty(''));
+      });
 
-      // group('Search Tv Shows', () {
-      //   test('Initial state should be empty', () {
-      //     expect(searchTvShowBloc.state, SearchEmpty(''));
-      //   });
-
-      //   blocTest<SearchTvShowBloc, SearchState>(
-      //     'Should emit [SearchLoading, SearchHasData] when data is gotten successfully',
-      //     build: () {
-      //       when(mockSearchTvShows.execute(tQueryTvShow))
-      //           .thenAnswer((_) async => Right(tTvShowList));
-      //       return searchTvShowBloc;
-      //     },
-      //     act: (bloc) => bloc.add(OnQueryChanged(tQueryTvShow)),
-      //     wait: const Duration(milliseconds: 500),
-      //     expect: () => [
-      //       SearchLoading(),
-      //       SearchHasData(tTvShowList),
-      //     ],
-      //     verify: (bloc) {
-      //       verify(mockSearchTvShows.execute(tQueryTvShow));
-      //     },
-      //   );
-
-      //   blocTest<SearchTvShowBloc, SearchState>(
-      //     'Should emit [SearchLoading, SearchHasData[], SearchEmpty] when data is empty',
-      //     build: () {
-      //       when(mockSearchTvShows.execute(tQueryTvShow))
-      //           .thenAnswer((_) async => Right(<TvShow>[]));
-      //       return searchTvShowBloc;
-      //     },
-      //     act: (bloc) => bloc.add(OnQueryChanged(tQueryTvShow)),
-      //     wait: const Duration(milliseconds: 500),
-      //     expect: () => [
-      //       SearchLoading(),
-      //       SearchHasData(<TvShow>[]),
-      //       SearchEmpty('No Result Found'),
-      //     ],
-      //     verify: (bloc) {
-      //       verify(mockSearchTvShows.execute(tQueryTvShow));
-      //     },
-      //   );
-
-      //   blocTest<SearchTvShowBloc, SearchState>(
-      //     'Should emit [SearchLoading, SearchError] when data is unsuccessful',
-      //     build: () {
-      //       when(mockSearchTvShows.execute(tQueryTvShow))
-      //           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      //       return searchTvShowBloc;
-      //     },
-      //     act: (bloc) => bloc.add(OnQueryChanged(tQueryTvShow)),
-      //     wait: const Duration(milliseconds: 500),
-      //     expect: () => [
-      //       SearchLoading(),
-      //       SearchError('Server Failure'),
-      //     ],
-      //     verify: (bloc) {
-      //       verify(mockSearchTvShows.execute(tQueryTvShow));
-      //     },
-      //   );
-      // });
+      blocTest<SearchTvSeriesBloc, SearchState>(
+        'Should emit [SearchLoading, SearchHasData] when data is gotten successfully',
+        build: () {
+          when(mockSearchTvSeriess.execute(tQuery))
+              .thenAnswer((_) async => Right(tTvSeriesList));
+          return searchTvSeriesBloc;
+        },
+        act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+        wait: const Duration(milliseconds: 500),
+        expect: () => [
+          SearchLoading(),
+          SearchHasData(tTvSeriesList),
+        ],
+        verify: (bloc) {
+          verify(mockSearchTvSeriess.execute(tQuery));
+        },
       );
+
+      blocTest<SearchTvSeriesBloc, SearchState>(
+        'Should emit [SearchLoading, SearchHasData[], SearchEmpty] when data is empty',
+        build: () {
+          when(mockSearchTvSeriess.execute(tQuery))
+              .thenAnswer((_) async => Right(<TvSeries>[]));
+          return searchTvSeriesBloc;
+        },
+        act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+        wait: const Duration(milliseconds: 500),
+        expect: () => [
+          SearchLoading(),
+          SearchHasData(<TvSeries>[]),
+          SearchEmpty('No Result Found'),
+        ],
+        verify: (bloc) {
+          verify(mockSearchTvSeriess.execute(tQuery));
+        },
+      );
+
+      blocTest<SearchTvSeriesBloc, SearchState>(
+        'Should emit [SearchLoading, SearchError] when data is unsuccessful',
+        build: () {
+          when(mockSearchTvSeriess.execute(tQuery))
+              .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          return searchTvSeriesBloc;
+        },
+        act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
+        wait: const Duration(milliseconds: 500),
+        expect: () => [
+          SearchLoading(),
+          SearchError('Server Failure'),
+        ],
+        verify: (bloc) {
+          verify(mockSearchTvSeriess.execute(tQuery));
+        },
+      );
+    });
+  });
 }

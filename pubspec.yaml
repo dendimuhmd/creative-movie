@@ -51,8 +51,8 @@ dependencies:
     path: movie
   search:
     path: search
-  # watchlist:
-  #   path: watchlist
+  watchlist:
+    path: watchlist
     
   
 

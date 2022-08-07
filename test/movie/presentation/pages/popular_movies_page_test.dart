@@ -29,7 +29,7 @@ void main() {
     mockPopularMoviesBloc = MockPopularMoviesBloc();
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget _widgetBody(Widget body) {
     return BlocProvider<PopularMoviesBloc>.value(
       value: mockPopularMoviesBloc,
       child: MaterialApp(
@@ -42,46 +42,45 @@ void main() {
       (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state).thenReturn(PopularMoviesLoading());
 
-    final progressBarFinder = find.byType(CircularProgressIndicator);
+    final showLoadingWidget = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_widgetBody(PopularMoviesPage()));
 
     expect(centerFinder, findsOneWidget);
-    expect(progressBarFinder, findsOneWidget);
+    expect(showLoadingWidget, findsOneWidget);
   });
 
-  testWidgets('Page should display ListView when data is loaded',
-      (WidgetTester tester) async {
+  testWidgets('Show ListView when state is load', (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state)
         .thenReturn(PopularMoviesLoaded([testMovie]));
 
     final listViewFinder = find.byType(ListView);
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_widgetBody(PopularMoviesPage()));
 
     expect(listViewFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Empty',
+  testWidgets('Show text with message when state is Empty',
       (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state).thenReturn(PopularMoviesEmpty());
 
     final textFinder = find.text('Empty Popular Movie');
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_widgetBody(PopularMoviesPage()));
 
     expect(textFinder, findsOneWidget);
   });
 
-  testWidgets('Page should display text with message when Error',
+  testWidgets('Show text with message when  state is Error',
       (WidgetTester tester) async {
     when(() => mockPopularMoviesBloc.state)
         .thenReturn(PopularMoviesError('Failed'));
 
     final textFinder = find.byKey(Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(PopularMoviesPage()));
+    await tester.pumpWidget(_widgetBody(PopularMoviesPage()));
 
     expect(textFinder, findsOneWidget);
   });
