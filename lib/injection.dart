@@ -1,3 +1,4 @@
+import 'package:core/common/http_ssl_pinning.dart';
 import 'package:core/common/shared.dart';
 import 'package:core/core.dart';
 import 'package:http/http.dart' as http;
@@ -159,5 +160,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => Shared.client);
+  locator.registerLazySingleton(() => HttpSslPinning.client);
 }
