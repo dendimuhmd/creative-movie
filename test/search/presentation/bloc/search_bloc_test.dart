@@ -42,7 +42,7 @@ void main() {
   final tQuery = 'spiderman';
 
   group('Search Movies', () {
-    test('Initial state should be empty', () {
+    test('Initial state will be empty to first', () {
       expect(searchMovieBloc.state, SearchEmpty(''));
     });
 
@@ -101,8 +101,8 @@ void main() {
       },
     );
 
-    group('Search Tv Shows', () {
-      test('Initial state should be empty', () {
+    group('Search Tv Series', () {
+      test('Initial state will be empty to first', () {
         expect(searchTvSeriesBloc.state, SearchEmpty(''));
       });
 
