@@ -95,10 +95,10 @@ class WatchListMovies extends StatelessWidget {
           } else if (state is WatchlistHasData<Movie>) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                final movie = state.WatchlistResult[index];
+                final movie = state.watchlistResult[index];
                 return MovieCard(movie);
               },
-              itemCount: state.WatchlistResult.length,
+              itemCount: state.watchlistResult.length,
             );
           } else if (state is WatchlistEmpty) {
             return Center(
@@ -133,10 +133,10 @@ class WatchListSeries extends StatelessWidget {
           } else if (state is WatchlistHasData<TvSeries>) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                final tvSeries = state.WatchlistResult[index];
+                final tvSeries = state.watchlistResult[index];
                 return TvSeriesCard(tvSeries);
               },
-              itemCount: state.WatchlistResult.length,
+              itemCount: state.watchlistResult.length,
             );
           } else if (state is WatchlistEmpty) {
             return Center(

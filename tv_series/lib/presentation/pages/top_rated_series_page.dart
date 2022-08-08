@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_series/presentation/bloc/top_rated_series_bloc.dart';
 
 class TopRatedSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-tvSeries';
+  static const routeName = '/top-rated-tvSeries';
 
   @override
   _TopRatedSeriesPageState createState() => _TopRatedSeriesPageState();
