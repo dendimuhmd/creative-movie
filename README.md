@@ -55,18 +55,4 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
 4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
 
 
-flutter pub run build_runner build --delete-conflicting-outputs
-
------------------------------------------------
-flutter test --coverage                                        
-genhtml coverage/lcov.info -o coverage/html
-
-run on mac 
-bash test.sh
-https://stackoverflow.com/questions/53229221/terminal-error-zsh-permission-denied-startup-sh
-
-
--------------------------------------
-flutter test --coverage
-;2Dgenhtml coverage/lcov.info -o coverage/html
-open coverage/html/index.html
+[![Codemagic build status](https://api.codemagic.io/apps/62efa717afdb914eb73b096c/62efa717afdb914eb73b096b/status_badge.svg)](https://codemagic.io/apps/62efa717afdb914eb73b096c/62efa717afdb914eb73b096b/latest_build)
