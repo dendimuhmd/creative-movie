@@ -47,7 +47,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<MovieModel>> getMovieRecommendations(int id) async {
-    try {} catch (e) {}
     final response = await client
         .get(Uri.parse('$BASE_URL/movie/$id/recommendations?$API_KEY'));
 

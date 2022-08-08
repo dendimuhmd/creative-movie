@@ -55,6 +55,7 @@ dependencies:
     path: search
   watchlist:
     path: watchlist
+  onboarding: ^3.1.0
 
 
 

@@ -5,6 +5,7 @@ import 'package:core/common/http_ssl_pinning.dart';
 
 import 'package:core/core.dart';
 import 'package:ditonton/home_page.dart';
+import 'package:ditonton/on_boarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
@@ -127,12 +128,14 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomePage(),
+        home: OnBoarding(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             // case '/home':
             //   return MaterialPageRoute(builder: (_) => HomePage());
+            case OnBoarding.routeName:
+              return MaterialPageRoute(builder: (_) => OnBoarding());
             case HomeMoviePage.routeName:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
             case PopularMoviesPage.routeName:
