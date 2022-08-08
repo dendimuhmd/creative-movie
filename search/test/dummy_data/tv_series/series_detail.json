@@ -1,0 +1,122 @@
+{
+    "adult": false,
+    "backdrop_path": "/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg",
+    "created_by": [],
+    "episode_run_time": [
+        31
+    ],
+    "first_air_date": "2022-05-16",
+    "genres": [
+        {
+            "id": 35,
+            "name": "Comedy"
+        },
+        {
+            "id": 18,
+            "name": "Drama"
+        }
+    ],
+    "homepage": "",
+    "id": 135647,
+    "in_production": true,
+    "languages": [
+        "en",
+        "tl"
+    ],
+    "last_air_date": "2022-07-29",
+    "last_episode_to_air": {
+        "air_date": "2022-07-29",
+        "episode_number": 55,
+        "id": 3727672,
+        "name": "The Real Villain",
+        "overview": "",
+        "production_code": "",
+        "runtime": 27,
+        "season_number": 1,
+        "show_id": 135647,
+        "still_path": null,
+        "vote_average": 0.0,
+        "vote_count": 0
+    },
+    "name": "2 Good 2 Be True",
+    "next_episode_to_air": {
+        "air_date": "2022-08-01",
+        "episode_number": 56,
+        "id": 3727673,
+        "name": "The Sad Truth",
+        "overview": "",
+        "production_code": "",
+        "runtime": 28,
+        "season_number": 1,
+        "show_id": 135647,
+        "still_path": null,
+        "vote_average": 0.0,
+        "vote_count": 0
+    },
+    "networks": [
+        {
+            "id": 42,
+            "name": "TV5",
+            "logo_path": "/gVinXXdpdbLHuXTUUfx4R9PyuPB.png",
+            "origin_country": "PH"
+        },
+        {
+            "id": 3920,
+            "name": "Kapamilya Channel",
+            "logo_path": "/xal22lPb7A1c1FQoYdHzpOm37Kf.png",
+            "origin_country": "PH"
+        }
+    ],
+    "number_of_episodes": 130,
+    "number_of_seasons": 1,
+    "origin_country": [
+        "PH"
+    ],
+    "original_language": "tl",
+    "original_name": "2 Good 2 Be True",
+    "overview": "Car mechanic Eloy makes a terrible first impression on Ali, who works for a real estate magnate. But both of them are hiding their true personas.",
+    "popularity": 943.32,
+    "poster_path": "/2Wf5ySCPcnp8lRhbSD7jt0YLz5A.jpg",
+    "production_companies": [
+        {
+            "id": 135722,
+            "logo_path": null,
+            "name": "RGE Drama Unit",
+            "origin_country": ""
+        }
+    ],
+    "production_countries": [
+        {
+            "iso_3166_1": "PH",
+            "name": "Philippines"
+        }
+    ],
+    "seasons": [
+        {
+            "air_date": "2022-05-16",
+            "episode_count": 130,
+            "id": 214345,
+            "name": "Season 1",
+            "overview": "Car mechanic Eloy makes a terrible first impression on Ali, who works for a real estate magnate. But both of them are hiding their true personas.",
+            "poster_path": "/i472ndnKvptTcayXD06Oikwg7np.jpg",
+            "season_number": 1
+        }
+    ],
+    "spoken_languages": [
+        {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+        },
+        {
+            "english_name": "Tagalog",
+            "iso_639_1": "tl",
+            "name": ""
+        }
+    ],
+    "status": "Returning Series",
+    "tagline": "",
+    "type": "Scripted",
+    "vote_average": 7.398,
+    "vote_count": 108
+}
