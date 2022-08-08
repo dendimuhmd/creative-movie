@@ -54,7 +54,6 @@ dependencies:
     path: search
   watchlist:
     path: watchlist
-    
   
 
 dev_dependencies:
