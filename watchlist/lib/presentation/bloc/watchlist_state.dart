@@ -28,10 +28,10 @@ class WatchlistError extends WatchlistState {
 }
 
 class WatchlistHasData<T> extends WatchlistState {
-  final List<T> WatchlistResult;
+  final List<T> watchlistResult;
 
-  WatchlistHasData(this.WatchlistResult);
+  WatchlistHasData(this.watchlistResult);
 
   @override
-  List<Object> get props => [WatchlistResult];
+  List<Object> get props => [watchlistResult];
 }

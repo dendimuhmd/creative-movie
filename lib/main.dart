@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:about/about.dart';
-import 'package:core/common/utils.dart';
+import 'package:core/common/http_ssl_pinning.dart';
+
 import 'package:core/core.dart';
 import 'package:ditonton/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +18,6 @@ import 'package:movie/presentation/pages/home_movie_page.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:search/presentation/pages/search_pages.dart';
@@ -28,11 +32,34 @@ import 'package:tv_series/presentation/pages/top_rated_series_page.dart';
 import 'package:watchlist/presentation/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentation/pages/watchlist_page.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await HttpSslPinning.init();
+//   await Firebase.initializeApp();
+//   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+//   di.init();
+//   runApp(MyApp());
+// }
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSslPinning.init();
+
+  await Firebase.initializeApp();
+
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   di.init();
-  runApp(MyApp());
+  runZonedGuarded(
+    () {
+      runApp(MyApp());
+    },
+    (error, stack) => FirebaseCrashlytics.instance.recordError(
+      error,
+      stack,
+      fatal: true,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -106,13 +133,13 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             // case '/home':
             //   return MaterialPageRoute(builder: (_) => HomePage());
-            case HomeMoviePage.ROUTE_NAME:
+            case HomeMoviePage.routeName:
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
-            case PopularMoviesPage.ROUTE_NAME:
+            case PopularMoviesPage.routeName:
               return MaterialPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
+            case TopRatedMoviesPage.routeName:
               return MaterialPageRoute(builder: (_) => TopRatedMoviesPage());
-            case MovieDetailPage.ROUTE_NAME:
+            case MovieDetailPage.routeName:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
@@ -122,25 +149,23 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => SearchPage());
             case WatchlistPage.routeName:
               return MaterialPageRoute(builder: (_) => WatchlistPage());
-            case AboutPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => AboutPage());
 
             //series
-            case HomeTvSeriesPage.ROUTE_NAME:
+            case HomeTvSeriesPage.routeName:
               return MaterialPageRoute(builder: (_) => HomeTvSeriesPage());
-            case TvSeriesDetailPage.ROUTE_NAME:
+            case TvSeriesDetailPage.routeName:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TvSeriesDetailPage(id: id),
                 settings: settings,
               );
-            case PopularSeriesPage.ROUTE_NAME:
+            case PopularSeriesPage.routeName:
               return MaterialPageRoute(builder: (_) => PopularSeriesPage());
 
-            case TopRatedSeriesPage.ROUTE_NAME:
+            case TopRatedSeriesPage.routeName:
               return MaterialPageRoute(builder: (_) => TopRatedSeriesPage());
 
-            case AboutPage.ROUTE_NAME:
+            case AboutPage.routeName:
               return MaterialPageRoute(builder: (_) => AboutPage());
 
             default:

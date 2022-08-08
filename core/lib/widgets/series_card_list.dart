@@ -23,7 +23,7 @@ class TvSeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            TvSeriesDetailPage.ROUTE_NAME,
+            TvSeriesDetailPage.routeName,
             arguments: tvSeries.id,
           );
         },
@@ -46,7 +46,7 @@ class TvSeriesCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       tvSeries.overview ?? '-',
                       maxLines: 2,
@@ -65,12 +65,12 @@ class TvSeriesCard extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
                   width: 80,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

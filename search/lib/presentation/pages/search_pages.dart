@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:core/core.dart';
 
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/tv_series/series.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
@@ -10,81 +13,57 @@ import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
   static const routeName = '/search';
-  final List<String> _tabTitle = ['Movies', 'Tv Shows'];
-  final List<Widget> _bodyPage = [
-    const _SearchMovieResult(),
-    const _SearchTvShowResult()
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Search'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                onChanged: (query) {
-                  context.read<SearchMovieBloc>().add(OnQueryChanged(query));
-                  context.read<SearchTvSeriesBloc>().add(OnQueryChanged(query));
-                },
-                decoration: InputDecoration(
-                    hintText: 'Search Title',
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    contentPadding: EdgeInsets.all(12)),
-                textInputAction: TextInputAction.search,
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Search Result',
-                style: kHeading6,
-              ),
-              TabBar(
-                indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50), // Creates border
-                    color: Colors.lightGreen[600]),
-                tabs: [
-                  Tab(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.movie),
-                        const SizedBox(width: 8),
-                        Text(_tabTitle[0], style: kSubtitle),
-                      ],
-                    ),
-                  ),
-                  Tab(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.tv),
-                        const SizedBox(width: 8),
-                        Text(_tabTitle[1], style: kSubtitle),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Flexible(child: TabBarView(children: _bodyPage))
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Search'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              onChanged: (query) {
+                context.read<SearchMovieBloc>().add(OnQueryChanged(query));
+                context.read<SearchTvSeriesBloc>().add(OnQueryChanged(query));
+                // FirebaseCrashlytics.instance.crash();
+              },
+              decoration: InputDecoration(
+                  hintText: 'Search Title',
+                  prefixIcon: const Icon(Icons.search),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(24)),
+                  contentPadding: const EdgeInsets.all(12)),
+              textInputAction: TextInputAction.search,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Movies',
+              style: kHeading6,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const Flexible(child: _SearchMovies()),
+            const SizedBox(height: 16),
+            Text(
+              'Series',
+              style: kHeading6,
+            ),
+            const SizedBox(height: 16),
+            const Flexible(fit: FlexFit.loose, child: _SearchSeries())
+          ],
         ),
       ),
     );
   }
 }
 
-class _SearchMovieResult extends StatelessWidget {
-  const _SearchMovieResult({Key? key}) : super(key: key);
+class _SearchMovies extends StatelessWidget {
+  const _SearchMovies({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +85,7 @@ class _SearchMovieResult extends StatelessWidget {
           );
         } else if (state is SearchEmpty) {
           return Center(
-            child: Text(state.message, style: kSubtitle),
+            child: Text('No Result Found :(', style: kSubtitle),
           );
         } else if (state is SearchError) {
           return Center(
@@ -120,13 +99,14 @@ class _SearchMovieResult extends StatelessWidget {
   }
 }
 
-class _SearchTvShowResult extends StatelessWidget {
-  const _SearchTvShowResult({Key? key}) : super(key: key);
+class _SearchSeries extends StatelessWidget {
+  const _SearchSeries({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchTvSeriesBloc, SearchState>(
       builder: (context, state) {
+        log(state.runtimeType.toString());
         if (state is SearchLoading) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -136,14 +116,15 @@ class _SearchTvShowResult extends StatelessWidget {
           return ListView.builder(
             padding: const EdgeInsets.all(8),
             itemBuilder: (context, index) {
-              final tvShow = result[index];
-              return TvSeriesCard(tvShow);
+              final tvSeries = result[index];
+              return TvSeriesCard(tvSeries);
             },
             itemCount: result.length,
           );
         } else if (state is SearchEmpty) {
+          log(state.message);
           return Center(
-            child: Text(state.message, style: kSubtitle),
+            child: Text('No Result Found :(', style: kSubtitle),
           );
         } else if (state is SearchError) {
           return Center(

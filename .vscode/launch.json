@@ -28,7 +28,7 @@
         //     "type": "dart"
         // },
         // {
-        //     "name": "about (profile mode)",
+        //     "name": "about (profile mode)", 
         //     "cwd": "about",
         //     "request": "launch",
         //     "type": "dart",

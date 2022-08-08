@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_series/presentation/bloc/series_detail_bloc.dart';
 
 class TvSeriesDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/detail-tv-series';
+  static const routeName = '/detail-tv-series';
 
   final int id;
   TvSeriesDetailPage({required this.id});
@@ -61,7 +61,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             currentState.watchlistMessage != '',
         builder: (context, state) {
           if (state.tvSeriesDetailState == RequestState.Loading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state.tvSeriesDetailState == RequestState.Loaded) {
@@ -100,7 +100,7 @@ class DetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
           width: screenWidth,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
           errorWidget: (context, url, error) => Icon(Icons.error),
@@ -110,7 +110,7 @@ class DetailContent extends StatelessWidget {
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -143,52 +143,23 @@ class DetailContent extends StatelessWidget {
                                           listen: false)
                                       .add(RemoveFromWatchlist(tvSeries));
                                 }
-
-                                // final message = Provider.of<SeriesDetailBloc>(
-                                //         context,
-                                //         listen: false)
-                                //     .watchlistMessage;
-
-                                // if (message ==
-                                //         TvSeriesDetailNotifier
-                                //             .watchlistAddSuccessMessage ||
-                                //     message ==
-                                //         TvSeriesDetailNotifier
-                                //             .watchlistRemoveSuccessMessage) {
-                                //   ScaffoldMessenger.of(context).showSnackBar(
-                                //       SnackBar(content: Text(message)));
-                                // } else {
-                                //   showDialog(
-                                //       context: context,
-                                //       builder: (context) {
-                                //         return AlertDialog(
-                                //           content: Text(message),
-                                //         );
-                                //       });
-                                // }
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   isAddedWatchlist
-                                      ? Icon(Icons.check)
-                                      : Icon(Icons.add),
-                                  Text('Watchlist'),
+                                      ? const Icon(Icons.check)
+                                      : const Icon(Icons.add),
+                                  const Text('Watchlist'),
                                 ],
                               ),
                             ),
-                            // Text(
-                            //   _showGenres(tvSeries.genres!),
-                            // ),
-                            // Text(
-                            //   _showDuration(tvSeries.),
-                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
                                   rating: tvSeries.voteAverage ?? 0 / 2,
                                   itemCount: 5,
-                                  itemBuilder: (context, index) => Icon(
+                                  itemBuilder: (context, index) => const Icon(
                                     Icons.star,
                                     color: kMikadoYellow,
                                   ),
@@ -197,11 +168,11 @@ class DetailContent extends StatelessWidget {
                                 Text('${tvSeries.voteAverage}')
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               _showGenres(tvSeries.genres!),
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Overview',
                               style: kHeading6,
@@ -209,72 +180,16 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tvSeries.overview ?? '',
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            // Consumer<TvSeriesDetailNotifier>(
-                            //   builder: (context, data, child) {
-                            //     if (data.recommendationState ==
-                            //         RequestState.Loading) {
-                            //       return Center(
-                            //         child: CircularProgressIndicator(),
-                            //       );
-                            //     } else if (data.recommendationState ==
-                            //         RequestState.Error) {
-                            //       return Text(data.message);
-                            //     } else if (data.recommendationState ==
-                            //         RequestState.Loaded) {
-                            //       return Container(
-                            //         height: 150,
-                            //         child: ListView.builder(
-                            //           scrollDirection: Axis.horizontal,
-                            //           itemBuilder: (context, index) {
-                            //             final tvSeries = recommendations[index];
-                            //             return Padding(
-                            //               padding: const EdgeInsets.all(4.0),
-                            //               child: InkWell(
-                            //                 onTap: () {
-                            //                   Navigator.pushReplacementNamed(
-                            //                     context,
-                            //                     TvSeriesDetailPage.ROUTE_NAME,
-                            //                     arguments: tvSeries.id,
-                            //                   );
-                            //                 },
-                            //                 child: ClipRRect(
-                            //                   borderRadius: BorderRadius.all(
-                            //                     Radius.circular(8),
-                            //                   ),
-                            //                   child: CachedNetworkImage(
-                            //                     imageUrl:
-                            //                         'https://image.tmdb.org/t/p/w500${tvSeries.posterPath}',
-                            //                     placeholder: (context, url) =>
-                            //                         Center(
-                            //                       child:
-                            //                           CircularProgressIndicator(),
-                            //                     ),
-                            //                     errorWidget:
-                            //                         (context, url, error) =>
-                            //                             Icon(Icons.error),
-                            //                   ),
-                            //                 ),
-                            //               ),
-                            //             );
-                            //           },
-                            //           itemCount: recommendations.length,
-                            //         ),
-                            //       );
-                            //     } else {
-                            //       return Container();
-                            //     }
-                            //   },
-                            // ),
                             BlocBuilder<SeriesDetailBloc, SeriesDetailState>(
                               builder: (context, state) {
                                 if (state.tvSeriesState ==
                                     RequestState.Loading) {
-                                  return Center(
+                                  return const Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (state.tvSeriesState ==
@@ -294,25 +209,26 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                TvSeriesDetailPage.ROUTE_NAME,
+                                                TvSeriesDetailPage.routeName,
                                                 arguments: tvShow.id,
                                               );
                                             },
                                             child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
+                                              borderRadius:
+                                                  const BorderRadius.all(
                                                 Radius.circular(8),
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     'https://image.tmdb.org/t/p/w500${tvShow.posterPath}',
                                                 placeholder: (context, url) =>
-                                                    Center(
+                                                    const Center(
                                                   child:
                                                       CircularProgressIndicator(),
                                                 ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                               ),
                                             ),
                                           ),
@@ -353,7 +269,7 @@ class DetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },

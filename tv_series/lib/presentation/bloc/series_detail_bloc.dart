@@ -65,7 +65,7 @@ class SeriesDetailBloc extends Bloc<SeriesDetailEvent, SeriesDetailState> {
     on<AddToWatchlist>((event, emit) async {
       final result = await saveWatchlistTvSeries.execute(event.tvSeriesDetail);
 
-      await result.fold((failure) {
+      result.fold((failure) {
         emit(state.copyWith(watchlistMessage: failure.message));
       }, (successMessage) {
         emit(state.copyWith(watchlistMessage: successMessage));
@@ -77,7 +77,7 @@ class SeriesDetailBloc extends Bloc<SeriesDetailEvent, SeriesDetailState> {
       final result =
           await removeWatchlistTvSeries.execute(event.tvSeriesDetail);
 
-      await result.fold((failure) {
+      result.fold((failure) {
         emit(state.copyWith(watchlistMessage: failure.message));
       }, (successMessage) {
         emit(state.copyWith(watchlistMessage: successMessage));

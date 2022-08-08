@@ -11,10 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.1.0
+  google_fonts: ^3.0.1
   equatable: ^2.0.2
   dartz: ^0.10.0-nullsafety.2
   sqflite: ^2.0.0+3
+  
+  encrypt: ^5.0.1
+  
+  sqflite_sqlcipher: ^2.1.0
+
   cached_network_image: ^3.0.0
 
   tv_series: 
@@ -27,9 +32,22 @@ dependencies:
 
 
 dev_dependencies:
+  bloc_test: ^9.0.0
+  build_runner: ^2.0.4
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  integration_test:
+    sdk: flutter
+  mockito: ^5.0.8
+  mocktail: ^0.2.0
+  test: ^1.16.0
+  test_api: any
+  test_core:
+
+dependency_overrides:
+  analyzer: ^4.3.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

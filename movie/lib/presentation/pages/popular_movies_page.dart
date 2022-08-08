@@ -6,7 +6,7 @@ import 'package:movie/presentation/bloc/popular_movie_bloc.dart';
 import 'package:provider/provider.dart';
 
 class PopularMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/popular-movie';
+  static const routeName = '/popular-movie';
 
   @override
   _PopularMoviesPageState createState() => _PopularMoviesPageState();
@@ -18,21 +18,21 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     super.initState();
     Future.microtask(() =>
         Provider.of<PopularMoviesBloc>(context, listen: false)
-            .add(PopularMovieEvent()));
+            .add(const PopularMovieEvent()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Movies'),
+        title: const Text('Popular Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
           builder: (context, state) {
             if (state is PopularMoviesLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularMoviesLoaded) {
@@ -49,7 +49,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               );
             } else if (state is PopularMoviesError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {

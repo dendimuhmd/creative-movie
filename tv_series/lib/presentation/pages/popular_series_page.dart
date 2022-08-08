@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_series/presentation/bloc/popular_series_bloc.dart';
 
 class PopularSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/popular-tvSeries';
+  static const routeName = '/popular-tvSeries';
 
   @override
   _PopularSeriesPageState createState() => _PopularSeriesPageState();
@@ -21,21 +21,21 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
     super.initState();
     Future.microtask(() =>
         Provider.of<PopularSeriesBloc>(context, listen: false)
-            .add(PopularSeriesEvent()));
+            .add(const PopularSeriesEvent()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Series'),
+        title: const Text('Popular Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<PopularSeriesBloc, PopularTvSeriesState>(
           builder: (context, state) {
             if (state is PopularTvSeriesLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is PopularTvSeriesLoaded) {
@@ -52,7 +52,7 @@ class _PopularSeriesPageState extends State<PopularSeriesPage> {
               );
             } else if (state is PopularTvSeriesError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {

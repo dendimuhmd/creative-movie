@@ -18,7 +18,7 @@ class WatchlistMovieBloc extends Bloc<WatchlistEvent, WatchlistState> {
           (moviesData) {
         emit(WatchlistHasData<Movie>(moviesData));
         if (moviesData.isEmpty) {
-          emit(WatchlistEmpty('You haven\'t added a watch list'));
+          emit(WatchlistEmpty('Empty'));
         }
       });
     });
@@ -35,7 +35,7 @@ class WatchlistSeriesBloc extends Bloc<WatchlistEvent, WatchlistState> {
           (tvShowsData) {
         emit(WatchlistHasData<TvSeries>(tvShowsData));
         if (tvShowsData.isEmpty) {
-          emit(WatchlistEmpty('You haven\'t added a watch list'));
+          emit(WatchlistEmpty('Empty'));
         }
       });
     });

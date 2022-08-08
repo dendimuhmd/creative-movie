@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tv_series/presentation/bloc/top_rated_series_bloc.dart';
 
 class TopRatedSeriesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-tvSeries';
+  static const routeName = '/top-rated-tvSeries';
 
   @override
   _TopRatedSeriesPageState createState() => _TopRatedSeriesPageState();
@@ -17,21 +17,18 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
     super.initState();
     Future.microtask(() =>
         Provider.of<TopRatedSeriesBloc>(context, listen: false)
-            .add(TopRatedSeriesEvent()));
+            .add(const TopRatedSeriesEvent()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Rated Tv Shows'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<TopRatedSeriesBloc, TopRatedSeriesState>(
           builder: (context, state) {
             if (state is TopRatedSeriesLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TopRatedSeriesLoaded) {
@@ -48,7 +45,7 @@ class _TopRatedSeriesPageState extends State<TopRatedSeriesPage> {
               );
             } else if (state is TopRatedSeriesError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message, style: kSubtitle),
               );
             } else {

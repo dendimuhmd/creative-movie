@@ -15,18 +15,15 @@ class WatchlistPage extends StatefulWidget {
 }
 
 class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
-  final List<String> _tabTitle = ['Movies', 'Tv Series'];
-  final List<Widget> _bodyPage = [_WatchlistMovies(), _WatchlistTvShows()];
-
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
         Provider.of<WatchlistMovieBloc>(context, listen: false)
-            .add(WatchlistEvent()));
+            .add(const WatchlistEvent()));
     Future.microtask(() =>
         Provider.of<WatchlistSeriesBloc>(context, listen: false)
-            .add(WatchlistEvent()));
+            .add(const WatchlistEvent()));
   }
 
   @override
@@ -35,6 +32,7 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistMovieBloc>(context, listen: false)
         .add(const WatchlistEvent());
@@ -48,37 +46,28 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Watchlist'),
-          bottom: TabBar(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-            indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(50), // Creates border
-                color: Colors.lightGreen[600]),
-            tabs: [
-              Tab(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.movie),
-                    const SizedBox(width: 8),
-                    Text(_tabTitle[0], style: kSubtitle),
-                  ],
-                ),
-              ),
-              Tab(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.tv),
-                    const SizedBox(width: 8),
-                    Text(_tabTitle[1], style: kSubtitle),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          title: const Text('Watchlist'),
         ),
-        body: TabBarView(children: _bodyPage),
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 16,
+            ),
+            Text(
+              'Movies',
+              style: kHeading6,
+            ),
+            const Flexible(child: WatchListMovies()),
+            const SizedBox(
+              height: 16,
+            ),
+            Text(
+              'Series',
+              style: kHeading6,
+            ),
+            const Flexible(child: WatchListSeries())
+          ],
+        ),
       ),
     );
   }
@@ -90,8 +79,8 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   }
 }
 
-class _WatchlistMovies extends StatelessWidget {
-  const _WatchlistMovies({Key? key}) : super(key: key);
+class WatchListMovies extends StatelessWidget {
+  const WatchListMovies({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,16 +89,16 @@ class _WatchlistMovies extends StatelessWidget {
       child: BlocBuilder<WatchlistMovieBloc, WatchlistState>(
         builder: (context, state) {
           if (state is WatchlistLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is WatchlistHasData<Movie>) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                final movie = state.WatchlistResult[index];
+                final movie = state.watchlistResult[index];
                 return MovieCard(movie);
               },
-              itemCount: state.WatchlistResult.length,
+              itemCount: state.watchlistResult.length,
             );
           } else if (state is WatchlistEmpty) {
             return Center(
@@ -128,8 +117,8 @@ class _WatchlistMovies extends StatelessWidget {
   }
 }
 
-class _WatchlistTvShows extends StatelessWidget {
-  const _WatchlistTvShows({Key? key}) : super(key: key);
+class WatchListSeries extends StatelessWidget {
+  const WatchListSeries({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,16 +127,16 @@ class _WatchlistTvShows extends StatelessWidget {
       child: BlocBuilder<WatchlistSeriesBloc, WatchlistState>(
         builder: (context, state) {
           if (state is WatchlistLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is WatchlistHasData<TvSeries>) {
             return ListView.builder(
               itemBuilder: (context, index) {
-                final tvSeries = state.WatchlistResult[index];
+                final tvSeries = state.watchlistResult[index];
                 return TvSeriesCard(tvSeries);
               },
-              itemCount: state.WatchlistResult.length,
+              itemCount: state.watchlistResult.length,
             );
           } else if (state is WatchlistEmpty) {
             return Center(
