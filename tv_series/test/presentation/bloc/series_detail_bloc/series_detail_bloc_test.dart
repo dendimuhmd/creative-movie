@@ -165,14 +165,14 @@ void main() {
       'Shoud emit watchlistMessage when Failed',
       build: () {
         when(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => Left(DatabaseFailure('Can\'t get data')));
         when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
             .thenAnswer((_) async => false);
         return seriesDetailBloc;
       },
       act: (bloc) => bloc.add(AddToWatchlist(testTvSeriesDetail)),
       expect: () => [
-        seriesDetailStateInitial.copyWith(watchlistMessage: 'Failed'),
+        seriesDetailStateInitial.copyWith(watchlistMessage: 'Can\'t get data'),
       ],
       verify: (_) {
         verify(mockSaveWatchlistTvSeries.execute(testTvSeriesDetail));
@@ -207,14 +207,14 @@ void main() {
       'Shoud emit watchlistMessage when Failed',
       build: () {
         when(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail))
-            .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+            .thenAnswer((_) async => Left(DatabaseFailure('Can\'t get data')));
         when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
             .thenAnswer((_) async => false);
         return seriesDetailBloc;
       },
       act: (bloc) => bloc.add(RemoveFromWatchlist(testTvSeriesDetail)),
       expect: () => [
-        seriesDetailStateInitial.copyWith(watchlistMessage: 'Failed'),
+        seriesDetailStateInitial.copyWith(watchlistMessage: 'Can\'t get data'),
       ],
       verify: (_) {
         verify(mockRemoveWatchlistTvSeries.execute(testTvSeriesDetail));

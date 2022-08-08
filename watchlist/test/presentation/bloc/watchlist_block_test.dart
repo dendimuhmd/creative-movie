@@ -61,7 +61,7 @@ void main() {
       expect: () => [
         WatchlistLoading(),
         WatchlistHasData(<Movie>[]),
-        WatchlistEmpty('You haven\'t added a watch list'),
+        WatchlistEmpty('Empty'),
       ],
       verify: (bloc) {
         verify(mockGetWatchlistMovies.execute());
@@ -119,7 +119,7 @@ void main() {
       expect: () => [
         WatchlistLoading(),
         WatchlistHasData(<TvSeries>[]),
-        WatchlistEmpty('You haven\'t added a watch list'),
+        WatchlistEmpty('Empty'),
       ],
       verify: (bloc) {
         verify(mockGetWatchlistTvSeries.execute());
