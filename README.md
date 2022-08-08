@@ -47,6 +47,10 @@ Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.
     ```
     ./test.sh
     ```
+    jika di mac
+    ```
+    bash ./test.sh
+    ```
     Proses ini akan men-*generate* berkas `lcov.info` dan folder `coverage` terkait dengan laporan coverage.
 4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
 
@@ -56,6 +60,10 @@ flutter pub run build_runner build --delete-conflicting-outputs
 -----------------------------------------------
 flutter test --coverage                                        
 genhtml coverage/lcov.info -o coverage/html
+
+run on mac 
+bash test.sh
+https://stackoverflow.com/questions/53229221/terminal-error-zsh-permission-denied-startup-sh
 
 
 -------------------------------------
