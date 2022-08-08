@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:about/about.dart';
 import 'package:core/common/http_ssl_pinning.dart';
 
 import 'package:core/core.dart';
 import 'package:ditonton/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,13 +32,34 @@ import 'package:tv_series/presentation/pages/top_rated_series_page.dart';
 import 'package:watchlist/presentation/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentation/pages/watchlist_page.dart';
 
-void main() async {
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await HttpSslPinning.init();
+//   await Firebase.initializeApp();
+//   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+//   di.init();
+//   runApp(MyApp());
+// }
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HttpSslPinning.init();
+
   await Firebase.initializeApp();
 
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   di.init();
-  runApp(MyApp());
+  runZonedGuarded(
+    () {
+      runApp(MyApp());
+    },
+    (error, stack) => FirebaseCrashlytics.instance.recordError(
+      error,
+      stack,
+      fatal: true,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

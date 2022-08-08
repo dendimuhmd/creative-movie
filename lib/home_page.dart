@@ -1,5 +1,6 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/presentation/bloc/movie_list_bloc.dart';
 import 'package:movie/presentation/pages/home_movie_page.dart';
@@ -55,10 +56,10 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/circle-g.png'),
               ),
-              accountName: Text('Ditonton',
+              accountName: Text('Creative movie',
                   style: kHeading6.copyWith(
                       fontSize: 17, color: kColorScheme.secondary)),
-              accountEmail: Text('ditonton@dicoding.com',
+              accountEmail: Text('creative_movie@dicoding.com',
                   style: kSubtitle.copyWith(color: kColorScheme.secondary)),
             ),
             ListTile(
@@ -91,6 +92,7 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.info_outline),
               title: Text('About', style: kSubtitle),
             ),
+            ElevatedButton(onPressed: () {}, child: Text(''))
           ],
         ),
       ),

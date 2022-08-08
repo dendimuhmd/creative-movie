@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/tv_series/series.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
@@ -28,6 +29,7 @@ class SearchPage extends StatelessWidget {
               onChanged: (query) {
                 context.read<SearchMovieBloc>().add(OnQueryChanged(query));
                 context.read<SearchTvSeriesBloc>().add(OnQueryChanged(query));
+                // FirebaseCrashlytics.instance.crash();
               },
               decoration: InputDecoration(
                   hintText: 'Search Title',
